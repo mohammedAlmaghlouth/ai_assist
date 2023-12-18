@@ -1,4 +1,4 @@
-import 'package:ai_assist/features/welcome/presentation/welcome_page.dart';
+import 'package:ai_assist/features/chatgpt/presentation/chatgpt_page.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -12,7 +12,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return const MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: WelcomePage(),
+      home: ChatGPT(),
     );
   }
 }
