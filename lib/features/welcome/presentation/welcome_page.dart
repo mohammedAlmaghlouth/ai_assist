@@ -1,3 +1,4 @@
+import 'package:ai_assist/features/main/presentation/main_page.dart';
 import 'package:flutter/material.dart';
 
 class WelcomePage extends StatefulWidget {
@@ -8,8 +9,6 @@ class WelcomePage extends StatefulWidget {
 }
 
 class _WelcomePageState extends State<WelcomePage> {
-  Color primaryPurple = const Color.fromARGB(202, 88, 12, 88);
-  Color primaryGrey = const Color.fromARGB(255, 96, 96, 96);
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -21,11 +20,11 @@ class _WelcomePageState extends State<WelcomePage> {
             Container(
               padding: const EdgeInsets.symmetric(vertical: 30),
               decoration: BoxDecoration(
-                color: primaryPurple,
+                color: Theme.of(context).colorScheme.primary,
               ),
               child: CircleAvatar(
                 radius: 100.0,
-                backgroundColor: primaryPurple,
+                backgroundColor: Theme.of(context).colorScheme.primary,
                 child: Image.asset('assets/logo.png'),
               ),
             ),
@@ -36,7 +35,7 @@ class _WelcomePageState extends State<WelcomePage> {
               style: TextStyle(
                 fontSize: 30.0,
                 fontWeight: FontWeight.w400,
-                color: primaryGrey,
+                color: Theme.of(context).colorScheme.secondary,
               ),
             ),
             const SizedBox(height: 60.0),
@@ -44,7 +43,7 @@ class _WelcomePageState extends State<WelcomePage> {
               'Login to use AI Assist services',
               textAlign: TextAlign.center,
               style: TextStyle(
-                color: primaryGrey,
+                color: Theme.of(context).colorScheme.secondary,
                 fontSize: 18.0,
               ),
             ),
@@ -53,7 +52,11 @@ class _WelcomePageState extends State<WelcomePage> {
               padding: const EdgeInsets.symmetric(horizontal: 40.0),
               child: ElevatedButton(
                 onPressed: () {
-                  // Navigated to sign in page
+                  // Navigated to sign in page '' temp
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => MainPage()),
+                  );
                 },
                 style: ButtonStyle(
                   padding: const MaterialStatePropertyAll(
@@ -64,11 +67,12 @@ class _WelcomePageState extends State<WelcomePage> {
                       borderRadius: BorderRadius.circular(30),
                     ),
                   ),
-                  backgroundColor: MaterialStatePropertyAll(primaryPurple),
+                  backgroundColor: MaterialStatePropertyAll(
+                      Theme.of(context).colorScheme.primary),
                 ),
                 child: const Text(
                   'Login',
-                  style: TextStyle(fontSize: 18),
+                  style: TextStyle(fontSize: 18, color: Colors.white),
                 ),
               ),
             ),
@@ -85,9 +89,14 @@ class _WelcomePageState extends State<WelcomePage> {
                         borderRadius: BorderRadius.circular(30),
                       ),
                     ),
-                    backgroundColor: MaterialStatePropertyAll(primaryGrey)),
+                    backgroundColor: MaterialStatePropertyAll(
+                        Theme.of(context).colorScheme.secondary)),
                 onPressed: () {
                   // Handle sign up
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => MainPage()),
+                  );
                 },
                 child: const Text('Register',
                     style: TextStyle(color: Colors.white, fontSize: 18)),

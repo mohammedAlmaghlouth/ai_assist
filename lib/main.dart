@@ -1,3 +1,4 @@
+import 'package:ai_assist/features/welcome/presentation/welcome_page.dart';
 import 'package:flutter/material.dart';
 
 import 'features/main/presentation/main_page.dart';
@@ -13,6 +14,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
       theme: ThemeData.light(useMaterial3: true).copyWith(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurpleAccent),
@@ -21,8 +23,9 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurpleAccent),
       ),
       themeMode: ThemeMode.system,
-      home: MainPage(),
+      home: const WelcomePage(),
       routes: {
+        '/welcomePage': (context) => const WelcomePage(),
         '/mainHomePage': (context) => MainPage(),
       },
     );
