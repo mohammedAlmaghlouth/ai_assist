@@ -1,4 +1,5 @@
 import 'package:ai_assist/features/chatgpt/presentation/chatgpt_page.dart';
+import 'package:ai_assist/features/dall/home_screen.dart';
 import 'package:ai_assist/features/imagetotext/presentation/recognitionscreen.dart';
 import 'package:ai_assist/features/main/presentation/custom_card.dart';
 import 'package:ai_assist/features/voice/presentation/voiceAI_Page.dart';
@@ -62,7 +63,7 @@ class _MainPageState extends State<MainPage> {
                 title: "Dall-E",
                 description:
                     "Use a groundbreaking AI model creating images from textual descriptions.",
-                route: const RecognitionScreen(),
+                route: const HomeScreen(),
               ),
               CustomCard(
                 color: Colors.deepPurple,

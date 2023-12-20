@@ -109,6 +109,7 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
         ),
       ),
+      backgroundColor: Theme.of(context).colorScheme.onPrimaryContainer,
       body: Padding(
         padding: const EdgeInsets.all(8.0),
         child: Column(
@@ -260,7 +261,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          Image.asset("assets/loader.gif"),
+                          Image.asset("assets/images/loader.gif"),
                           const SizedBox(height: 12),
                           Text(
                             "Waiting for image to be generated...",

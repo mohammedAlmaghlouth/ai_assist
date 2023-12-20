@@ -79,6 +79,7 @@ flutter:
     - lib/features/main/data/images/dalle.png
     - assets/images/
     - assets/sounds/
+    - assets/images/loader.gif
 
 
   # An image asset can refer to one or more resolution-specific "variants", see
@@ -100,10 +101,10 @@ flutter:
 
     - family: poppins
       fonts:
-        - asset: assets/poppin.ttf
+        - asset: assets/fonts/poppin.ttf
     - family: Trajan Pro
       fonts:
-        - asset: assets/poppin.ttf
+        - asset: assets/fonts/poppin.ttf
 
   #         style: italic
   #   - family: Trajan Pro
