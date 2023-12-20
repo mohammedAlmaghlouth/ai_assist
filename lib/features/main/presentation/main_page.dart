@@ -19,11 +19,25 @@ class _MainPageState extends State<MainPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-          title: Text(
-            'Logo',
-            style: TextStyle(color: Theme.of(context).secondaryHeaderColor),
+          title: Row(
+            children: [
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Image.asset(
+                  'assets/images/logo.png',
+                  height: 64,
+                  width: 64,
+                ),
+              ),
+              Text(
+                'AI Assistant',
+                style: TextStyle(
+                  color: Theme.of(context).colorScheme.onTertiary,
+                ),
+              ),
+            ],
           ),
-          backgroundColor: Theme.of(context).primaryColor,
+          backgroundColor: Theme.of(context).colorScheme.onPrimaryContainer,
           automaticallyImplyLeading: false),
       body: Padding(
         padding: const EdgeInsets.only(top: 64),
@@ -51,8 +65,8 @@ class _MainPageState extends State<MainPage> {
                 route: const RecognitionScreen(),
               ),
               CustomCard(
-                color: Colors.blue,
-                imagePath: 'lib/features/main/data/images/imageToText.png',
+                color: Colors.deepPurple,
+                imagePath: 'lib/features/imagetotext/data/images/add_image.png',
                 title: "Image to Text",
                 description:
                     "Convert descriptive content from images into text through advanced processing",
@@ -60,7 +74,7 @@ class _MainPageState extends State<MainPage> {
               ),
               CustomCard(
                   color: Colors.pink,
-                  imagePath: 'lib/features/main/data/images/imageToText.png',
+                  imagePath: 'assets/images/virtualAssistant.png',
                   title: "AI Voice Assistant",
                   description:
                       "Ask questions using the microphone and receive answers accordingly",

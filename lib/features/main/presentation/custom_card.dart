@@ -45,14 +45,14 @@ class CustomCard extends StatelessWidget {
                   Text(
                     title,
                     style: TextStyle(
-                        color: Theme.of(context).secondaryHeaderColor),
+                        color: Theme.of(context).colorScheme.onTertiary),
                   ),
                 ],
               ),
               SizedBox(height: 16.0),
               Text(
                 description,
-                style: textStyle(10, Theme.of(context).secondaryHeaderColor,
+                style: textStyle(10, Theme.of(context).colorScheme.onTertiary,
                     FontWeight.w500),
                 textAlign: TextAlign.left,
               ),
