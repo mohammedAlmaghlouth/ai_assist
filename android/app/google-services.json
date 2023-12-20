@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "828564717583",
+    "project_id": "logindatabase-a4582",
+    "storage_bucket": "logindatabase-a4582.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:828564717583:android:f57873914ea7b7de11e37a",
+        "android_client_info": {
+          "package_name": "at.petroly_ai.login"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAUoLVB4I5NMn2CE8EVG-9sIi38IvH9Hp0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
