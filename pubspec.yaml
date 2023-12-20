@@ -46,6 +46,11 @@ dependencies:
   speech_to_text: ^6.5.1
   flutter_tts: ^3.8.5
   animate_do: ^3.1.2
+  screenshot: ^2.1.0
+  path_provider: ^2.1.1
+  share_plus: ^7.2.1
+  permission_handler: ^11.1.0
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
@@ -93,6 +98,14 @@ flutter:
       fonts:
         - asset: assets/fonts/Cera-Pro-Bold.otf
         - asset: assets/fonts/Cera-Pro-Medium.otf
+
+    - family: poppins
+      fonts:
+        - asset: assets/poppin.ttf
+    - family: Trajan Pro
+      fonts:
+        - asset: assets/poppin.ttf
+
   #         style: italic
   #   - family: Trajan Pro
   #     fonts:
