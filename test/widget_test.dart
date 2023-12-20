@@ -1,30 +1,36 @@
-// This is a basic Flutter widget test.
-//
-// To perform an interaction with a widget in your test, use the WidgetTester
-// utility in the flutter_test package. For example, you can send tap and scroll
-// gestures. You can also use WidgetTester to find child widgets in the widget
-// tree, read text, and verify that the values of widget properties are correct.
-
+import 'package:ai_assist/features/chatgpt/presentation/chatgpt_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-
-import 'package:ai_assist/main.dart';
+import 'package:ai_assist/features/chatgpt/data/openai_api.dart';
+import 'package:ai_assist/features/chatgpt/data/users.dart';
+import 'package:chat_gpt_sdk/chat_gpt_sdk.dart';
+import 'package:dash_chat_2/dash_chat_2.dart';
+import 'package:ai_assist/main.dart'; // Assuming this is where ChatGPT is included
 
 void main() {
-  testWidgets('Counter increments smoke test', (WidgetTester tester) async {
-    // Build our app and trigger a frame.
-    await tester.pumpWidget(const MyApp());
+  // to test ChatGpt page
+  testWidgets('ChatGPT Page Test', (WidgetTester tester) async {
+    // Build the ChatGPT page and trigger a frame.
+    await tester.pumpWidget(const MaterialApp(home: ChatGPT()));
 
-    // Verify that our counter starts at 0.
-    expect(find.text('0'), findsOneWidget);
-    expect(find.text('1'), findsNothing);
+    // Verify if the AppBar with the title 'AI-ASSIST GPT' is present.
+    expect(find.text('AI-ASSIST GPT'), findsOneWidget);
 
-    // Tap the '+' icon and trigger a frame.
-    await tester.tap(find.byIcon(Icons.add));
-    await tester.pump();
+    // Find the message input field.
+    final Finder messageInputField = find.byType(TextField);
+    expect(messageInputField, findsOneWidget);
 
-    // Verify that our counter has incremented.
-    expect(find.text('0'), findsNothing);
-    expect(find.text('1'), findsOneWidget);
+    // Enter a message.
+    await tester.enterText(messageInputField, 'Hello, ChatGPT!');
+    await tester.pumpAndSettle();
+
+    // Tap the send button and trigger a frame.
+    final Finder sendButton =
+        find.widgetWithIcon(FloatingActionButton, Icons.send);
+    await tester.tap(sendButton);
+    await tester.pumpAndSettle();
+
+    // Verify if the message is added to the chat
+    expect(find.text('Hello, ChatGPT!'), findsOneWidget);
   });
 }
