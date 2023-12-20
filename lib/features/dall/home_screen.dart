@@ -1,14 +1,14 @@
 import 'dart:io';
 import 'dart:typed_data';
 
+import 'package:ai_assist/features/dall/api_services.dart';
+import 'package:ai_assist/features/dall/arts_screen.dart';
+import 'package:ai_assist/features/dall/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:screenshot/screenshot.dart';
 import 'package:share_plus/share_plus.dart';
-import 'package:swe463_porject/api_services.dart';
-import 'package:swe463_porject/arts_screen.dart';
-import 'package:swe463_porject/colors.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -91,7 +91,10 @@ class _HomeScreenState extends State<HomeScreen> {
                 backgroundColor: btnColor,
               ),
               onPressed: () {
-                Navigator.push(context, MaterialPageRoute(builder: (context)=> const ArtsScreen()));
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => const ArtsScreen()));
               },
               child: const Text("My Arts"),
             ),
@@ -225,11 +228,8 @@ class _HomeScreenState extends State<HomeScreen> {
                                   padding: EdgeInsets.all(8),
                                   backgroundColor: btnColor,
                                 ),
-                                onPressed: ()  {
-
+                                onPressed: () {
                                   downloadImg();
-
-
                                 },
                                 label: const Text("Download"),
                               ),

@@ -1,7 +1,7 @@
 import 'dart:io';
 
+import 'package:ai_assist/features/dall/colors.dart';
 import 'package:flutter/material.dart';
-import 'package:swe463_porject/colors.dart';
 
 class ArtsScreen extends StatefulWidget {
   const ArtsScreen({super.key});
@@ -65,7 +65,10 @@ class _ArtsScreenState extends State<ArtsScreen> {
           padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8),
           child: GridView.builder(
             gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: 2, mainAxisExtent: 8, crossAxisSpacing: 8,mainAxisSpacing: 300),
+                crossAxisCount: 2,
+                mainAxisExtent: 8,
+                crossAxisSpacing: 8,
+                mainAxisSpacing: 300),
             itemCount: imgList.length,
             itemBuilder: (BuildContext context, int index) {
               return GestureDetector(
@@ -77,7 +80,6 @@ class _ArtsScreenState extends State<ArtsScreen> {
                     borderRadius: BorderRadius.circular(12),
                   ),
                   child: Image.file(imgList[index], fit: BoxFit.cover),
-                  
                 ),
               );
             },

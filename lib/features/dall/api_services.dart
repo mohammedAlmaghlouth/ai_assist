@@ -1,6 +1,6 @@
 import 'dart:convert';
+import 'package:ai_assist/features/dall/api_key.dart';
 import 'package:http/http.dart' as http;
-import 'package:swe463_porject/api_key.dart';
 
 class Api {
   static final url = Uri.parse("https://api.openai.com/v1/images/generations");
