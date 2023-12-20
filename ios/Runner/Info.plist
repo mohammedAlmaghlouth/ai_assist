@@ -45,5 +45,9 @@
 	<true/>
 	<key>UIApplicationSupportsIndirectInputEvents</key>
 	<true/>
+	<key>NSSpeechRecognitionUsageDescription</key>
+	<string>This is to enable the voice AI assistant to work</string>
+	<key>NSMicrophoneUsageDescription</key>
+	<string>This is to enable the voice AI assistant to work</string>
 </dict>
 </plist>

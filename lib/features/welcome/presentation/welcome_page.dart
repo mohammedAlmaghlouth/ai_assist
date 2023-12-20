@@ -25,7 +25,7 @@ class _WelcomePageState extends State<WelcomePage> {
               child: CircleAvatar(
                 radius: 100.0,
                 backgroundColor: Theme.of(context).colorScheme.primary,
-                child: Image.asset('assets/logo.png'),
+                child: Image.asset('assets/images/logo.png'),
               ),
             ),
             const SizedBox(height: 70.0),
