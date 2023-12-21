@@ -28,46 +28,57 @@ class CustomCard extends StatelessWidget {
           ),
         );
       },
-      child: Card(
-        color: color,
-        margin: EdgeInsets.all(8.0),
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(20.0),
-        ),
-        child: Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Text(
-                    title,
-                    style: TextStyle(
-                        color: Theme.of(context).colorScheme.onTertiary),
+      child: Container(
+        child: Card(
+            color: color,
+            margin: EdgeInsets.all(8.0),
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(20.0),
+            ),
+            child: Stack(
+              children: [
+                Opacity(
+                  opacity: 0.25,
+                  child: Container(
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(20.0),
+                      image: DecorationImage(
+                        image: AssetImage(imagePath),
+                        fit: BoxFit.cover,
+                      ),
+                    ),
                   ),
-                ],
-              ),
-              SizedBox(height: 16.0),
-              Text(
-                description,
-                style: textStyle(size: 10, color: Theme.of(context).colorScheme.onTertiary,
-                    fw: FontWeight.w500),
-                textAlign: TextAlign.left,
-              ),
-              SizedBox(height: 8.0),
-              Align(
-                alignment: Alignment.bottomRight,
-                child: Image.asset(
-                  imagePath,
-                  width: 32,
-                  height: 26,
                 ),
-              ),
-            ],
-          ),
-        ),
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Text(
+                            title,
+                            style: TextStyle(
+                                color:
+                                    Theme.of(context).colorScheme.onTertiary),
+                          ),
+                        ],
+                      ),
+                      SizedBox(height: 16.0),
+                      Text(
+                        description,
+                        style: textStyle(
+                            size: 10,
+                            color: Theme.of(context).colorScheme.onTertiary,
+                            fw: FontWeight.w500),
+                        textAlign: TextAlign.left,
+                      ),
+                    ],
+                  ),
+                ),
+              ],
+            )),
       ),
     );
   }

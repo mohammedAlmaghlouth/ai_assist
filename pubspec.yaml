@@ -80,11 +80,10 @@ flutter:
     - lib/features/imagetotext/data/images/add_image.png
     - lib/features/main/data/images/imageToText.png
     - lib/features/main/data/images/chatgpt.png
-    - lib/features/main/data/images/dalle.png
+    - lib/features/main/data/images/dalleLogo.png
     - assets/images/
     - assets/sounds/
     - assets/images/loader.gif
-
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
