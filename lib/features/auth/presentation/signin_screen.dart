@@ -1,25 +1,22 @@
+import 'package:ai_assist/features/main/presentation/main_page.dart';
 import 'package:flutter/material.dart';
-
-import 'package:login/screens/signin_screen.dart';
-import 'package:login/widgets/my_button.dart';
+import 'package:ai_assist/features/auth/presentation/my_button.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 
-class RegistrationScreen extends StatefulWidget {
-  static const String screenRoute = 'registration_screen';
+class SignInScreen extends StatefulWidget {
+  static const String screenRoute = 'signin_screen';
 
-  const RegistrationScreen({Key? key}) : super(key: key);
+  const SignInScreen({Key? key}) : super(key: key);
 
   @override
-  _RegistrationScreenState createState() => _RegistrationScreenState();
+  _SignInScreenState createState() => _SignInScreenState();
 }
 
-class _RegistrationScreenState extends State<RegistrationScreen> {
+class _SignInScreenState extends State<SignInScreen> {
   final _auth = FirebaseAuth.instance;
-
   late String email;
   late String password;
-
   bool showSpinner = false;
 
   @override
@@ -36,16 +33,18 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
             children: [
               SizedBox(
                 height: 180,
-                child: Image.asset('images/login.png'),
+                child: Image.asset('assets/images/login.png'),
               ),
               const SizedBox(height: 50),
               TextField(
                 keyboardType: TextInputType.emailAddress,
                 textAlign: TextAlign.center,
+                style: TextStyle(color: Theme.of(context).colorScheme.onSecondaryContainer),
                 onChanged: (value) {
                   email = value;
                 },
-                decoration: const InputDecoration(
+                decoration: InputDecoration(
+                  hintStyle: TextStyle(color: Colors.grey),
                   hintText: 'Enter your Email',
                   contentPadding: EdgeInsets.symmetric(
                     vertical: 10,
@@ -80,10 +79,12 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
               TextField(
                 obscureText: true,
                 textAlign: TextAlign.center,
+                style: TextStyle(color: Theme.of(context).colorScheme.onSecondaryContainer),
                 onChanged: (value) {
                   password = value;
                 },
                 decoration: const InputDecoration(
+                  hintStyle: TextStyle(color: Colors.grey),
                   hintText: 'Enter your password',
                   contentPadding: EdgeInsets.symmetric(
                     vertical: 10,
@@ -116,22 +117,23 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
               ),
               const SizedBox(height: 10),
               MyButton(
-                color: Colors.blue[800]!,
-                title: 'register',
+                color: Colors.yellow[900]!,
+                title: 'Sign in',
                 onPressed: () async {
-                  // print(email);
-                  // print(password);
                   setState(() {
                     showSpinner = true;
                   });
                   try {
-                    final newUser = await _auth.createUserWithEmailAndPassword(
+                    final user = await _auth.signInWithEmailAndPassword(
                         email: email, password: password);
-                    Navigator.pushNamed(context, SignInScreen.screenRoute);
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => MainPage()),
+                    );
                     setState(() {
                       showSpinner = false;
                     });
-                  } catch (e) {
+                                    } catch (e) {
                     print(e);
                   }
                 },

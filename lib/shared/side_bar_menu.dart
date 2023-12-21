@@ -71,11 +71,11 @@ class SideBarMenu extends StatelessWidget {
           spacing: 10,
           children: [
             ListTile(
-              leading: const Icon(Icons.home_rounded),
+              leading: const Icon(Icons.home_rounded,size: 30),
               title: const Text("Home"),
               onTap: () {
                 // put navigation to Home
-                print("Home");
+                Navigator.pushReplacementNamed(context, "/mainHomePage");
               },
               iconColor: Theme.of(context).colorScheme.onInverseSurface,
               textColor: Theme.of(context).colorScheme.onInverseSurface,
@@ -85,44 +85,44 @@ class SideBarMenu extends StatelessWidget {
               color: Theme.of(context).colorScheme.onInverseSurface,
             ),
             ListTile(
-              leading: const Icon(Icons.chat_rounded),
+              leading: const Icon(Icons.chat_rounded,size: 30),
               title: const Text("chatGPT"),
               onTap: () {
                 // put navigation to chatGPT
-                print("chatGPT");
+                Navigator.pushReplacementNamed(context, "/chatGPT");
               },
               iconColor: Theme.of(context).colorScheme.onInverseSurface,
               textColor: Theme.of(context).colorScheme.onInverseSurface,
               selectedColor: Theme.of(context).colorScheme.onInverseSurface,
             ),
             ListTile(
-              leading: const Icon(Icons.image),
+              leading: const Icon(Icons.image,size: 30),
               title: const Text("Dall-E"),
               onTap: () {
                 // put navigation to Dall-E
-                print("Dall-E");
+                Navigator.pushReplacementNamed(context, "/DALL-E");
               },
               iconColor: Theme.of(context).colorScheme.onInverseSurface,
               textColor: Theme.of(context).colorScheme.onInverseSurface,
               selectedColor: Theme.of(context).colorScheme.onInverseSurface,
             ),
             ListTile(
-              leading: const Icon(Icons.text_fields_rounded),
+              leading: const Icon(Icons.text_fields_rounded,size: 30),
               title: const Text("Image to text"),
               onTap: () {
                 // put navigation to Image to text
-                print("Image to text");
+                Navigator.pushReplacementNamed(context, "/ImageToText");
               },
               iconColor: Theme.of(context).colorScheme.onInverseSurface,
               textColor: Theme.of(context).colorScheme.onInverseSurface,
               selectedColor: Theme.of(context).colorScheme.onInverseSurface,
             ),
             ListTile(
-              leading: const Icon(Icons.mic),
+              leading: const Icon(Icons.mic,size: 30),
               title: const Text("Voice AI Assistant"),
               onTap: () {
                 // put navigation to Voice AI Assistant
-                print("Voice AI Assistant");
+                Navigator.pushReplacementNamed(context, "/VoiceAIAssistant");
               },
               iconColor: Theme.of(context).colorScheme.onInverseSurface,
               textColor: Theme.of(context).colorScheme.onInverseSurface,
@@ -132,11 +132,11 @@ class SideBarMenu extends StatelessWidget {
               color: Theme.of(context).colorScheme.onInverseSurface,
             ),
             ListTile(
-              leading: const Icon(Icons.logout_rounded),
+              leading: const Icon(Icons.logout_rounded,size: 30),
               title: const Text("Logout"),
               onTap: () {
                 // For Logging out
-                print("Logout");
+                Navigator.pushReplacementNamed(context, "/logout");
               },
               iconColor: Theme.of(context).colorScheme.onInverseSurface,
               textColor: Theme.of(context).colorScheme.onInverseSurface,

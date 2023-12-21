@@ -1,6 +1,6 @@
 import 'dart:io';
 
-import 'package:ai_assist/features/dall/colors.dart';
+import 'package:ai_assist/features/dall/data/colors.dart';
 import 'package:flutter/material.dart';
 
 class ArtsScreen extends StatefulWidget {
@@ -53,13 +53,14 @@ class _ArtsScreenState extends State<ArtsScreen> {
     return Scaffold(
         appBar: AppBar(
           centerTitle: true,
-          title: const Text(
+          title: Text(
             "Art Gallery",
             style: TextStyle(
               fontFamily: "poppins_bold",
-              color: whileColor,
+              color: Theme.of(context).colorScheme.onSecondaryContainer,
             ),
           ),
+          backgroundColor: Theme.of(context).colorScheme.inversePrimary,
         ),
         body: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8),

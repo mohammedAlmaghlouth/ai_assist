@@ -1,4 +1,4 @@
-import 'package:ai_assist/features/imagetotext/domain/utils.dart';
+import 'package:ai_assist/shared/utils.dart';
 import 'package:ai_assist/features/imagetotext/presentation/recognitionscreen.dart';
 import 'package:flutter/material.dart';
 
@@ -52,8 +52,8 @@ class CustomCard extends StatelessWidget {
               SizedBox(height: 16.0),
               Text(
                 description,
-                style: textStyle(10, Theme.of(context).colorScheme.onTertiary,
-                    FontWeight.w500),
+                style: textStyle(size: 10, color: Theme.of(context).colorScheme.onTertiary,
+                    fw: FontWeight.w500),
                 textAlign: TextAlign.left,
               ),
               SizedBox(height: 8.0),

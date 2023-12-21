@@ -1,7 +1,8 @@
 // Import necessary libraries
 import 'dart:io';
 import 'package:ai_assist/features/imagetotext/domain/optiondialog.dart';
-import 'package:ai_assist/features/imagetotext/domain/utils.dart';
+import 'package:ai_assist/shared/side_bar_menu.dart';
+import 'package:ai_assist/shared/utils.dart';
 import 'package:ai_assist/features/imagetotext/presentation/process_image.dart';
 import 'package:ai_assist/shared/bottom_navigation.dart';
 import 'package:clipboard/clipboard.dart';
@@ -16,9 +17,9 @@ class RecognitionScreen extends StatefulWidget {
 }
 
 class _RecognitionScreenState extends State<RecognitionScreen> {
-  int _currentIndex = 0;
   File? pickedimage;
   String? recognizedText;
+
   // Callback function to update the state with the selected image
   void updateSelectedImage(File? image) async {
     if (image != null) {
@@ -37,7 +38,8 @@ class _RecognitionScreenState extends State<RecognitionScreen> {
         title: Text(
           "Image to text",
           style: textStyle(
-              24, const Color.fromARGB(255, 174, 174, 174), FontWeight.w600),
+              size: 24,
+              color: Theme.of(context).colorScheme.onSecondaryContainer),
         ),
         titleSpacing: 00.0,
         centerTitle: true,
@@ -49,7 +51,11 @@ class _RecognitionScreenState extends State<RecognitionScreen> {
               bottomLeft: Radius.circular(25)),
         ),
         elevation: 0.00,
-        backgroundColor: const Color.fromARGB(184, 114, 5, 111),
+        backgroundColor: Theme.of(context).colorScheme.inversePrimary,
+      ),
+      drawer: SideBarMenu(
+        user: 'User',
+        email: 'Example@email.com',
       ),
       backgroundColor: const Color.fromARGB(255, 44, 44, 44),
       floatingActionButton: Padding(
@@ -61,6 +67,7 @@ class _RecognitionScreenState extends State<RecognitionScreen> {
             Container(
               margin: EdgeInsets.only(bottom: 10),
               child: FloatingActionButton(
+                heroTag: null, // Disables hero animation
                 backgroundColor: Color.fromARGB(255, 14, 79, 169),
                 onPressed: () => Share.share(recognizedText!),
                 child: Icon(
@@ -81,7 +88,7 @@ class _RecognitionScreenState extends State<RecognitionScreen> {
                     SnackBar snackBar = SnackBar(
                       content: Text(
                         "Text has been copied to clipboard",
-                        style: textStyle(14, Colors.white, FontWeight.w500),
+                        // style: textStyle(14, Colors.white, FontWeight.w500),
                       ),
                       duration: Duration(seconds: 1),
                     );
@@ -145,18 +152,6 @@ class _RecognitionScreenState extends State<RecognitionScreen> {
             ],
           ),
         ),
-      ),
-      bottomNavigationBar: BottomNavigation(
-        currentIndex: _currentIndex,
-        onTap: (index) {
-          if (index == 0) {
-            Navigator.pushReplacementNamed(context, '/mainHomePage');
-          } else {
-            setState(() {
-              _currentIndex = index;
-            });
-          }
-        },
       ),
     );
   }

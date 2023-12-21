@@ -1,23 +1,26 @@
+// ignore_for_file: camel_case_types
+
 import 'dart:io';
 import 'dart:typed_data';
 
-import 'package:ai_assist/features/dall/api_services.dart';
-import 'package:ai_assist/features/dall/arts_screen.dart';
-import 'package:ai_assist/features/dall/colors.dart';
+import 'package:ai_assist/features/dall/application/api_services.dart';
+import 'package:ai_assist/features/dall/presentation/arts_screen.dart';
+import 'package:ai_assist/features/dall/data/colors.dart';
+import 'package:ai_assist/shared/side_bar_menu.dart';
 import 'package:flutter/material.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:screenshot/screenshot.dart';
 import 'package:share_plus/share_plus.dart';
 
-class HomeScreen extends StatefulWidget {
-  const HomeScreen({super.key});
+class Dall_E_Page extends StatefulWidget {
+  const Dall_E_Page({super.key});
 
   @override
-  State<HomeScreen> createState() => _HomeScreenState();
+  State<Dall_E_Page> createState() => _Dall_E_PageState();
 }
 
-class _HomeScreenState extends State<HomeScreen> {
+class _Dall_E_PageState extends State<Dall_E_Page> {
   var sizes = ["Small", "Medium", "Large"];
   var values = ["256x256", "512x512", "1024x1024"];
   String? dropValue;
@@ -40,23 +43,47 @@ class _HomeScreenState extends State<HomeScreen> {
             delay: Duration(milliseconds: 100),
             fileName: filename,
             pixelRatio: 1.0);
-        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-          content: Text("Downloaded to ${path.path}"),
-        ));
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text(
+              "Downloaded to ${path.path}",
+              style: TextStyle(
+                color: Theme.of(context).colorScheme.onSecondaryContainer,
+              ),
+            ),
+            backgroundColor: Theme.of(context).colorScheme.secondaryContainer,
+          ),
+        );
       } else {
         await path.create();
         await screenshotController.captureAndSave(path.path,
             delay: Duration(milliseconds: 100),
             fileName: filename,
             pixelRatio: 1.0);
-        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-          content: Text("Downloaded to ${path.path}"),
-        ));
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text(
+              "Downloaded to ${path.path}",
+              style: TextStyle(
+                color: Theme.of(context).colorScheme.onSecondaryContainer,
+              ),
+            ),
+            backgroundColor: Theme.of(context).colorScheme.secondaryContainer,
+          ),
+        );
       }
     } else {
-      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-        content: Text("Permission denied"),
-      ));
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text(
+            "Permission denied",
+            style: TextStyle(
+              color: Theme.of(context).colorScheme.onSecondaryContainer,
+            ),
+          ),
+          backgroundColor: Theme.of(context).colorScheme.secondaryContainer,
+        ),
+      );
     }
   }
 
@@ -88,7 +115,8 @@ class _HomeScreenState extends State<HomeScreen> {
             child: ElevatedButton(
               style: ElevatedButton.styleFrom(
                 padding: EdgeInsets.all(8),
-                backgroundColor: btnColor,
+                elevation: 2,
+                backgroundColor: Theme.of(context).colorScheme.onSecondary,
               ),
               onPressed: () {
                 Navigator.push(
@@ -96,20 +124,29 @@ class _HomeScreenState extends State<HomeScreen> {
                     MaterialPageRoute(
                         builder: (context) => const ArtsScreen()));
               },
-              child: const Text("My Arts"),
+              child: Text(
+                "My Arts",
+                style: TextStyle(
+                  color: Theme.of(context).colorScheme.onSecondaryContainer,
+                ),
+              ),
             ),
           ),
         ],
         centerTitle: true,
-        title: const Text(
+        title: Text(
           "AI Image Generator",
           style: TextStyle(
             fontFamily: "poppins_bold",
-            color: whileColor,
+            color: Theme.of(context).colorScheme.onSecondaryContainer,
           ),
         ),
+        backgroundColor: Theme.of(context).colorScheme.inversePrimary,
       ),
-      backgroundColor: Theme.of(context).colorScheme.onPrimaryContainer,
+      drawer: SideBarMenu(
+        user: 'User',
+        email: 'Example@email.com',
+      ),
       body: Padding(
         padding: const EdgeInsets.all(8.0),
         child: Column(
@@ -126,15 +163,26 @@ class _HomeScreenState extends State<HomeScreen> {
                           padding: const EdgeInsets.symmetric(
                               horizontal: 16, vertical: 4),
                           decoration: BoxDecoration(
-                            color: whileColor,
+                            color: Theme.of(context)
+                                .colorScheme
+                                .secondaryContainer,
                             borderRadius: BorderRadius.circular(12),
                           ),
                           child: TextFormField(
+                            style: TextStyle(
+                                color: Theme.of(context)
+                                    .colorScheme
+                                    .onSecondaryContainer),
                             controller: textController,
-                            decoration: const InputDecoration(
+                            decoration: InputDecoration(
+                              hintStyle: TextStyle(
+                                  color: Theme.of(context)
+                                      .colorScheme
+                                      .onSecondaryContainer),
                               hintText: "eg 'A lion on moon'",
                               border: InputBorder.none,
                             ),
+                            textAlignVertical: TextAlignVertical.center,
                           ),
                         ),
                       ),
@@ -144,18 +192,36 @@ class _HomeScreenState extends State<HomeScreen> {
                         padding:
                             EdgeInsets.symmetric(horizontal: 8, vertical: 2),
                         decoration: BoxDecoration(
-                          color: whileColor,
+                          color:
+                              Theme.of(context).colorScheme.secondaryContainer,
                           borderRadius: BorderRadius.circular(12),
                         ),
                         child: DropdownButtonHideUnderline(
                             child: DropdownButton(
-                          icon: const Icon(Icons.expand_more, color: btnColor),
+                          dropdownColor:
+                              Theme.of(context).colorScheme.secondaryContainer,
+                          icon: Icon(Icons.expand_more,
+                              color: Theme.of(context)
+                                  .colorScheme
+                                  .onSecondaryContainer),
                           value: dropValue,
-                          hint: const Text("Select size"),
+                          hint: Text(
+                            "Select size",
+                            style: TextStyle(
+                                color: Theme.of(context)
+                                    .colorScheme
+                                    .onSecondaryContainer),
+                          ),
                           items: List.generate(
                               sizes.length,
                               (index) => DropdownMenuItem(
-                                    child: Text(sizes[index]),
+                                    child: Text(
+                                      sizes[index],
+                                      style: TextStyle(
+                                          color: Theme.of(context)
+                                              .colorScheme
+                                              .onSecondaryContainer),
+                                    ),
                                     value: values[index],
                                   )),
                           onChanged: (value) {
@@ -172,7 +238,8 @@ class _HomeScreenState extends State<HomeScreen> {
                       height: 44,
                       child: ElevatedButton(
                           style: ElevatedButton.styleFrom(
-                              backgroundColor: btnColor,
+                              backgroundColor:
+                                  Theme.of(context).colorScheme.inversePrimary,
                               shape: const StadiumBorder()),
                           onPressed: () async {
                             if (textController.text.isNotEmpty &&
@@ -188,14 +255,27 @@ class _HomeScreenState extends State<HomeScreen> {
                               });
                             } else {
                               ScaffoldMessenger.of(context).showSnackBar(
-                                const SnackBar(
-                                  content:
-                                      Text("Please pass the query and size"),
+                                SnackBar(
+                                  content: Text(
+                                    "Please pass the query and size",
+                                    style: TextStyle(
+                                      color: Theme.of(context)
+                                          .colorScheme
+                                          .onSecondaryContainer,
+                                    ),
+                                  ),
+                                  backgroundColor: Theme.of(context)
+                                      .colorScheme
+                                      .secondaryContainer,
                                 ),
                               );
                             }
                           },
-                          child: const Text("Generate")))
+                          child: Text("Generate",
+                              style: TextStyle(
+                                  color: Theme.of(context)
+                                      .colorScheme
+                                      .onSecondaryContainer))))
                 ],
               ),
             ),
@@ -245,7 +325,20 @@ class _HomeScreenState extends State<HomeScreen> {
                               onPressed: () async {
                                 await shareImage();
                                 ScaffoldMessenger.of(context).showSnackBar(
-                                    SnackBar(content: Text("Image shared")));
+                                  SnackBar(
+                                    content: Text(
+                                      "Image shared",
+                                      style: TextStyle(
+                                        color: Theme.of(context)
+                                            .colorScheme
+                                            .onSecondaryContainer,
+                                      ),
+                                    ),
+                                    backgroundColor: Theme.of(context)
+                                        .colorScheme
+                                        .secondaryContainer,
+                                  ),
+                                );
                               },
                               label: const Text("Share"),
                             ),
@@ -256,8 +349,11 @@ class _HomeScreenState extends State<HomeScreen> {
                   : Container(
                       alignment: Alignment.center,
                       decoration: BoxDecoration(
+                          border: Border.all(
+                            color: Theme.of(context).colorScheme.onBackground,
+                          ),
                           borderRadius: BorderRadius.circular(12),
-                          color: whileColor),
+                          color: Theme.of(context).colorScheme.surface),
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
@@ -266,8 +362,8 @@ class _HomeScreenState extends State<HomeScreen> {
                           Text(
                             "Waiting for image to be generated...",
                             style: TextStyle(
-                              fontSize: 16.0,
-                            ),
+                                fontSize: 16.0,
+                                color: Theme.of(context).colorScheme.onSurface),
                           )
                         ],
                       ),

@@ -1,3 +1,4 @@
+import 'package:ai_assist/shared/side_bar_menu.dart';
 import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_tts/flutter_tts.dart';
@@ -9,8 +10,7 @@ import 'virtualAssisstantProfile.dart';
 import '../application/openai_service.dart';
 
 class VoiceAI_Page extends StatefulWidget {
-  final sideBarMenu;
-  const VoiceAI_Page({super.key, this.sideBarMenu});
+  const VoiceAI_Page({super.key});
 
   @override
   State<VoiceAI_Page> createState() => _VoiceAI_PageState();
@@ -115,34 +115,14 @@ class _VoiceAI_PageState extends State<VoiceAI_Page> {
               ],
             ),
           ),
-          // IconButton(
-          //   onPressed: () async {
-          //     setState(() {
-          //       lastWords = '';
-          //       openAIService = OpenAIService();
-          //       generatedContent = null;
-          //       generatedImageUrl = null;
-          //       ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-          //         content: Text(
-          //           "New chat or topic",
-          //           style: TextStyle(
-          //             color: Theme.of(context).colorScheme.onSecondaryContainer,
-          //           ),
-          //         ),
-          //         backgroundColor:
-          //             Theme.of(context).colorScheme.secondaryContainer,
-          //         duration: const Duration(seconds: 2),
-          //       ));
-          //     });
-          //     await flutterTts.stop();
-          //   },
-          //   icon: const Icon(Icons.chat_rounded),
-          // ),
         ],
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
         centerTitle: true,
       ),
-      drawer: widget.sideBarMenu,
+      drawer: SideBarMenu(
+        user: 'User',
+        email: 'Example@email.com',
+      ),
       body: SingleChildScrollView(
         child: Column(
           children: [

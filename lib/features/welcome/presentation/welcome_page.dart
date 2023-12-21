@@ -1,5 +1,6 @@
-import 'package:ai_assist/features/main/presentation/main_page.dart';
+import 'package:ai_assist/features/auth/presentation/signin_screen.dart';
 import 'package:flutter/material.dart';
+import '../../auth/presentation/registration_screen.dart';
 
 class WelcomePage extends StatefulWidget {
   const WelcomePage({super.key});
@@ -12,19 +13,21 @@ class _WelcomePageState extends State<WelcomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SafeArea(
+      body: SingleChildScrollView(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: <Widget>[
             Container(
+              margin: EdgeInsets.only(top: 30),
               padding: const EdgeInsets.symmetric(vertical: 30),
               decoration: BoxDecoration(
-                color: Theme.of(context).colorScheme.primary,
+                color: Theme.of(context).colorScheme.inversePrimary,
+                shape: BoxShape.circle
               ),
               child: CircleAvatar(
                 radius: 100.0,
-                backgroundColor: Theme.of(context).colorScheme.primary,
+                backgroundColor: Theme.of(context).colorScheme.inversePrimary,
                 child: Image.asset('assets/images/logo.png'),
               ),
             ),
@@ -55,7 +58,7 @@ class _WelcomePageState extends State<WelcomePage> {
                   // Navigated to sign in page '' temp
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => MainPage()),
+                    MaterialPageRoute(builder: (context) => SignInScreen()),
                   );
                 },
                 style: ButtonStyle(
@@ -68,11 +71,11 @@ class _WelcomePageState extends State<WelcomePage> {
                     ),
                   ),
                   backgroundColor: MaterialStatePropertyAll(
-                      Theme.of(context).colorScheme.primary),
+                      Theme.of(context).colorScheme.inversePrimary),
                 ),
-                child: const Text(
+                child: Text(
                   'Login',
-                  style: TextStyle(fontSize: 18, color: Colors.white),
+                  style: TextStyle(fontSize: 18, color: Theme.of(context).colorScheme.onSecondaryContainer),
                 ),
               ),
             ),
@@ -81,6 +84,7 @@ class _WelcomePageState extends State<WelcomePage> {
               padding: const EdgeInsets.symmetric(horizontal: 40.0),
               child: ElevatedButton(
                 style: ButtonStyle(
+
                     padding: const MaterialStatePropertyAll(
                       EdgeInsets.symmetric(vertical: 15),
                     ),
@@ -90,16 +94,16 @@ class _WelcomePageState extends State<WelcomePage> {
                       ),
                     ),
                     backgroundColor: MaterialStatePropertyAll(
-                        Theme.of(context).colorScheme.secondary)),
+                        Theme.of(context).colorScheme.secondaryContainer)),
                 onPressed: () {
                   // Handle sign up
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => MainPage()),
+                    MaterialPageRoute(builder: (context) => RegistrationScreen()),
                   );
                 },
-                child: const Text('Register',
-                    style: TextStyle(color: Colors.white, fontSize: 18)),
+                child: Text('Register',
+                    style: TextStyle(color: Theme.of(context).colorScheme.onSecondaryContainer, fontSize: 18)),
               ),
             ),
           ],

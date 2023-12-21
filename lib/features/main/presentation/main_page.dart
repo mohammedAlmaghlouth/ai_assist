@@ -1,9 +1,10 @@
 import 'package:ai_assist/features/chatgpt/presentation/chatgpt_page.dart';
-import 'package:ai_assist/features/dall/home_screen.dart';
+import 'package:ai_assist/features/dall/presentation/dall_e_page.dart';
 import 'package:ai_assist/features/imagetotext/presentation/recognitionscreen.dart';
 import 'package:ai_assist/features/main/presentation/custom_card.dart';
 import 'package:ai_assist/features/voice/presentation/voiceAI_Page.dart';
 import 'package:ai_assist/shared/bottom_navigation.dart';
+import 'package:ai_assist/shared/side_bar_menu.dart';
 import 'package:flutter/material.dart';
 
 class MainPage extends StatefulWidget {
@@ -14,32 +15,37 @@ class MainPage extends StatefulWidget {
 }
 
 class _MainPageState extends State<MainPage> {
-  int _currentIndex = 0;
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-          title: Row(
-            children: [
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Image.asset(
-                  'assets/images/logo.png',
-                  height: 64,
-                  width: 64,
-                ),
+        title: Row(
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: [
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Image.asset(
+                'assets/images/logo.png',
+                height: 64,
+                width: 64,
               ),
-              Text(
-                'AI Assistant',
-                style: TextStyle(
-                  color: Theme.of(context).colorScheme.onTertiary,
-                ),
+            ),
+            Text(
+              'AI Assistant',
+              style: TextStyle(
+                fontFamily: "Cera Pro",
+                color: Theme.of(context).colorScheme.onSecondaryContainer,
               ),
-            ],
-          ),
-          backgroundColor: Theme.of(context).colorScheme.onPrimaryContainer,
-          automaticallyImplyLeading: false),
+            ),
+          ],
+        ),
+        backgroundColor: Theme.of(context).colorScheme.inversePrimary,
+        centerTitle: true,
+      ),
+      drawer: SideBarMenu(
+        user: 'User',
+        email: 'Example@email.com',
+      ),
       body: Padding(
         padding: const EdgeInsets.only(top: 64),
         child: Container(
@@ -63,7 +69,7 @@ class _MainPageState extends State<MainPage> {
                 title: "Dall-E",
                 description:
                     "Use a groundbreaking AI model creating images from textual descriptions.",
-                route: const HomeScreen(),
+                route: const Dall_E_Page(),
               ),
               CustomCard(
                 color: Colors.deepPurple,
@@ -83,14 +89,6 @@ class _MainPageState extends State<MainPage> {
             ],
           ),
         ),
-      ),
-      bottomNavigationBar: BottomNavigation(
-        currentIndex: _currentIndex,
-        onTap: (index) {
-          setState(() {
-            _currentIndex = index;
-          });
-        },
       ),
     );
   }

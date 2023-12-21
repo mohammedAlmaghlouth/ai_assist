@@ -1,7 +1,7 @@
 import 'dart:io';
 
 import 'package:ai_assist/features/imagetotext/domain/pickimage.dart';
-import 'package:ai_assist/features/imagetotext/domain/utils.dart';
+import 'package:ai_assist/shared/utils.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 
@@ -10,6 +10,7 @@ optionsdialog(BuildContext context, Function(File?) callback) {
     context: context,
     builder: (context) {
       return SimpleDialog(
+        backgroundColor: Theme.of(context).colorScheme.secondaryContainer,
         children: [
           SimpleDialogOption(
             onPressed: () async {
@@ -19,7 +20,10 @@ optionsdialog(BuildContext context, Function(File?) callback) {
             },
             child: Text(
               "Gallery",
-              style: textStyle(20, Colors.black, FontWeight.w600),
+              style: textStyle(
+                  size: 20,
+                  color: Theme.of(context).colorScheme.onSecondaryContainer,
+                  fw: FontWeight.w600),
             ),
           ),
           SimpleDialogOption(
@@ -30,7 +34,11 @@ optionsdialog(BuildContext context, Function(File?) callback) {
             },
             child: Text(
               "Camera",
-              style: textStyle(20, Colors.black, FontWeight.w600),
+              style: textStyle(
+                size: 20,
+                color: Theme.of(context).colorScheme.onSecondaryContainer,
+                fw: FontWeight.w600,
+              ),
             ),
           ),
           SimpleDialogOption(
@@ -38,7 +46,10 @@ optionsdialog(BuildContext context, Function(File?) callback) {
             child: Text(
               "Cancel",
               style: textStyle(
-                  20, const Color.fromARGB(255, 255, 0, 0), FontWeight.w300),
+                size: 20,
+                color: const Color.fromARGB(255, 255, 0, 0),
+                fw: FontWeight.w300,
+              ),
             ),
           )
         ],

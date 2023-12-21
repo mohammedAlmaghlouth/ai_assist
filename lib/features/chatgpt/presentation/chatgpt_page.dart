@@ -1,5 +1,7 @@
 import 'package:ai_assist/features/chatgpt/data/openai_api.dart';
 import 'package:ai_assist/features/chatgpt/data/users.dart';
+import 'package:ai_assist/shared/side_bar_menu.dart';
+import 'package:ai_assist/shared/utils.dart';
 import 'package:chat_gpt_sdk/chat_gpt_sdk.dart';
 import 'package:dash_chat_2/dash_chat_2.dart';
 import 'package:flutter/material.dart';
@@ -26,20 +28,26 @@ class _ChatGPTState extends State<ChatGPT> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Theme.of(context).colorScheme.primary,
-        title: const Text(
+        backgroundColor: Theme.of(context).colorScheme.inversePrimary,
+        title: Text(
           'AI-ASSIST GPT',
-          style: TextStyle(color: Colors.white),
+          style: textStyle(
+            size: 20,
+            color: Theme.of(context).colorScheme.onSecondaryContainer,
+          ),
         ),
+      ),
+      drawer: SideBarMenu(
+        user: 'User',
+        email: 'Example@email.com',
       ),
       body: DashChat(
         currentUser: currentUser,
         messageOptions: MessageOptions(
-            currentUserTextColor: Colors.black,
-            currentUserContainerColor: Theme.of(context).colorScheme.primary,
-            containerColor: Theme.of(context).colorScheme.secondary,
-            
-            textColor: Colors.white),
+            currentUserTextColor: Theme.of(context).colorScheme.onSecondaryContainer,
+            currentUserContainerColor: Theme.of(context).colorScheme.inversePrimary,
+            containerColor: Theme.of(context).colorScheme.secondaryContainer,
+            textColor: Theme.of(context).colorScheme.onSecondaryContainer),
         onSend: (ChatMessage message) {
           getChatResponse(message);
         },
@@ -62,8 +70,8 @@ class _ChatGPTState extends State<ChatGPT> {
       }
     }).toList();
     final request = ChatCompleteText(
-      model:
-          GptTurbo0301ChatModel(), // here I select this model, because its fast and cheap
+      model: GptTurbo0301ChatModel(),
+      // here I select this model, because its fast and cheap
       messages: messagesHistory,
       maxToken: 250,
     ); // here token set to maximum 250, because its a trail project - unreleased.
