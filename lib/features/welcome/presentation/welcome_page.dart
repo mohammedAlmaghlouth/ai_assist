@@ -55,11 +55,7 @@ class _WelcomePageState extends State<WelcomePage> {
               padding: const EdgeInsets.symmetric(horizontal: 40.0),
               child: ElevatedButton(
                 onPressed: () {
-                  // Navigated to sign in page '' temp
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => SignInScreen()),
-                  );
+                  Navigator.of(context).pushNamed("/homePage");
                 },
                 style: ButtonStyle(
                   padding: const MaterialStatePropertyAll(
@@ -97,10 +93,11 @@ class _WelcomePageState extends State<WelcomePage> {
                         Theme.of(context).colorScheme.secondaryContainer)),
                 onPressed: () {
                   // Handle sign up
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => RegistrationScreen()),
-                  );
+                  // Navigator.push(
+                  //   context,
+                  //   MaterialPageRoute(builder: (context) => RegistrationScreen()),
+                  // );
+                  Navigator.of(context).pushNamed("/homePage");
                 },
                 child: Text('Register',
                     style: TextStyle(color: Theme.of(context).colorScheme.onSecondaryContainer, fontSize: 18)),

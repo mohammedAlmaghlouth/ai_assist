@@ -5,20 +5,20 @@ import 'package:ai_assist/features/voice/presentation/voiceAI_Page.dart';
 import 'package:ai_assist/features/welcome/presentation/welcome_page.dart';
 import 'package:flutter/material.dart';
 import 'features/main/presentation/main_page.dart';
-import 'package:firebase_core/firebase_core.dart';
+// import 'package:firebase_core/firebase_core.dart';
 
 import 'shared/side_bar_menu.dart';
 
 Future<void> main() async {
-  WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp(
-    options: FirebaseOptions(
-      apiKey: 'AIzaSyCXPQO8bhZDi7c6qWfYKja9TrKr8nSmPp4',
-      appId: '1:1020046637361:android:d07c9c7a5c33f91bc71810',
-      messagingSenderId: '1020046637361',
-      projectId: 'petroly-ai',
-    ),
-  );
+  // WidgetsFlutterBinding.ensureInitialized();
+  // await Firebase.initializeApp(
+  //   options: FirebaseOptions(
+  //     apiKey: 'AIzaSyCXPQO8bhZDi7c6qWfYKja9TrKr8nSmPp4',
+  //     appId: '1:1020046637361:android:d07c9c7a5c33f91bc71810',
+  //     messagingSenderId: '1020046637361',
+  //     projectId: 'petroly-ai',
+  //   ),
+  // );
   runApp(const MyApp());
 }
 
@@ -45,7 +45,7 @@ class MyApp extends StatelessWidget {
       home: const WelcomePage(),
       routes: {
         '/welcomePage': (context) => const WelcomePage(),
-        '/mainHomePage': (context) => const MainPage(),
+        '/homePage': (context) => const MainPage(),
         '/chatGPT': (context) => const ChatGPT(),
         '/DALL-E': (context) => const Dall_E_Page(),
         '/ImageToText': (context) => const RecognitionScreen(),
