@@ -1,30 +1,40 @@
 import 'package:flutter/material.dart';
 
-
 class MyButton extends StatelessWidget {
-  const MyButton({super.key, required this.color, required this.title, required this.onPressed});
-
-  final Color color;
-  final String title;
-  final VoidCallback onPressed;
+  final Function()? onTap;
+  final String content;
+  const MyButton({super.key, required this.onTap, required this.content});
 
   @override
   Widget build(BuildContext context) {
-    return Padding(padding: const EdgeInsets.symmetric(vertical: 10),
-    child: Material(
-      elevation: 5,
-      color: color,
-      borderRadius: BorderRadius.circular(10),
-      child: MaterialButton(
-        onPressed: onPressed,
-        minWidth: 200,
-        height: 42,
-        child: Text(
-          title,
-          style: const TextStyle(color: Colors.white),
+    return GestureDetector(
+      onTap: onTap,
+      child: Container(
+        padding: const EdgeInsets.all(25),
+        margin: const EdgeInsets.symmetric(horizontal: 25),
+        decoration: BoxDecoration(
+          color: MediaQuery.platformBrightnessOf(context)
+              .name ==
+              "dark"
+              ? Theme.of(context).colorScheme.inversePrimary
+              : Theme.of(context).colorScheme.secondaryContainer,
+          borderRadius: BorderRadius.circular(8),
+        ),
+        child: Center(
+          child: Text(
+            content,
+            style: TextStyle(
+              color: MediaQuery.platformBrightnessOf(context)
+                  .name ==
+                  "light"
+                  ? Theme.of(context).colorScheme.onSecondaryContainer
+                  : Theme.of(context).colorScheme.onSecondaryContainer,
+              fontWeight: FontWeight.bold,
+              fontSize: 16,
+            ),
+          ),
         ),
       ),
-    ),
     );
   }
 }

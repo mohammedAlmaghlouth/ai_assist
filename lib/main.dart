@@ -1,3 +1,5 @@
+import 'package:ai_assist/features/auth/presentation/login_page.dart';
+import 'package:ai_assist/features/auth/presentation/sign_up_page.dart';
 import 'package:ai_assist/features/chatgpt/presentation/chatgpt_page.dart';
 import 'package:ai_assist/features/dall/presentation/dall_e_page.dart';
 import 'package:ai_assist/features/imagetotext/presentation/recognitionscreen.dart';
@@ -42,6 +44,8 @@ class MyApp extends StatelessWidget {
         '/ImageToText': (context) => const RecognitionScreen(),
         '/VoiceAIAssistant': (context) => const VoiceAI_Page(),
         '/logout': (context) => const WelcomePage(),
+        '/signUpPage': (context) => SignUpPage(),
+        '/loginPage': (context) => LoginPage(),
       },
     );
   }
