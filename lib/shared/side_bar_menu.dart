@@ -75,7 +75,7 @@ class SideBarMenu extends StatelessWidget {
               title: const Text("Home"),
               onTap: () {
                 // put navigation to Home
-                Navigator.pushReplacementNamed(context, "/mainHomePage");
+                Navigator.pushReplacementNamed(context, "/homePage");
               },
               iconColor: Theme.of(context).colorScheme.onInverseSurface,
               textColor: Theme.of(context).colorScheme.onInverseSurface,

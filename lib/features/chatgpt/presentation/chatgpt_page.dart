@@ -1,4 +1,4 @@
-import 'package:ai_assist/features/chatgpt/data/openai_api.dart';
+import 'package:ai_assist/shared/openai_api.dart';
 import 'package:ai_assist/features/chatgpt/data/users.dart';
 import 'package:ai_assist/shared/side_bar_menu.dart';
 import 'package:ai_assist/shared/utils.dart';

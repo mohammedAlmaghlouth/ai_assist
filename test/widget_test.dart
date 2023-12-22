@@ -1,7 +1,7 @@
 import 'package:ai_assist/features/chatgpt/presentation/chatgpt_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:ai_assist/features/chatgpt/data/openai_api.dart';
+import 'package:ai_assist/shared/openai_api.dart';
 import 'package:ai_assist/features/chatgpt/data/users.dart';
 import 'package:chat_gpt_sdk/chat_gpt_sdk.dart';
 import 'package:dash_chat_2/dash_chat_2.dart';

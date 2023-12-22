@@ -28,10 +28,6 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    const sideBarMenu = SideBarMenu(
-      user: 'User',
-      email: 'Example@email.com',
-    );
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
