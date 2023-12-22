@@ -37,15 +37,14 @@ class _ChatGPTState extends State<ChatGPT> {
           ),
         ),
       ),
-      drawer: SideBarMenu(
-        user: 'User',
-        email: 'Example@email.com',
-      ),
+      drawer: SideBarMenu(),
       body: DashChat(
         currentUser: currentUser,
         messageOptions: MessageOptions(
-            currentUserTextColor: Theme.of(context).colorScheme.onSecondaryContainer,
-            currentUserContainerColor: Theme.of(context).colorScheme.inversePrimary,
+            currentUserTextColor:
+                Theme.of(context).colorScheme.onSecondaryContainer,
+            currentUserContainerColor:
+                Theme.of(context).colorScheme.inversePrimary,
             containerColor: Theme.of(context).colorScheme.secondaryContainer,
             textColor: Theme.of(context).colorScheme.onSecondaryContainer),
         onSend: (ChatMessage message) {

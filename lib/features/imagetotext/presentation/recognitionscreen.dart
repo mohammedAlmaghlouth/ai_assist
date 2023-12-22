@@ -53,10 +53,7 @@ class _RecognitionScreenState extends State<RecognitionScreen> {
         elevation: 0.00,
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
       ),
-      drawer: SideBarMenu(
-        user: 'User',
-        email: 'Example@email.com',
-      ),
+      drawer: SideBarMenu(),
       backgroundColor: const Color.fromARGB(255, 44, 44, 44),
       floatingActionButton: Padding(
         padding: EdgeInsets.symmetric(horizontal: 15),
@@ -67,7 +64,8 @@ class _RecognitionScreenState extends State<RecognitionScreen> {
             Container(
               margin: EdgeInsets.only(bottom: 10),
               child: FloatingActionButton(
-                heroTag: null, // Disables hero animation
+                heroTag: null,
+                // Disables hero animation
                 backgroundColor: Color.fromARGB(255, 14, 79, 169),
                 onPressed: () => Share.share(recognizedText!),
                 child: Icon(

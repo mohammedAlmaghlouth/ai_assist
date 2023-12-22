@@ -119,10 +119,7 @@ class _VoiceAI_PageState extends State<VoiceAI_Page> {
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
         centerTitle: true,
       ),
-      drawer: SideBarMenu(
-        user: 'User',
-        email: 'Example@email.com',
-      ),
+      drawer: SideBarMenu(),
       body: SingleChildScrollView(
         child: Column(
           children: [

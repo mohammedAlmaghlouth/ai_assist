@@ -43,10 +43,7 @@ class _MainPageState extends State<MainPage> {
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
         centerTitle: true,
       ),
-      drawer: SideBarMenu(
-        user: 'User',
-        email: 'Example@email.com',
-      ),
+      drawer: SideBarMenu(),
       body: Column(
         children: [
           SizedBox(height: 80.0),

@@ -143,10 +143,7 @@ class _Dall_E_PageState extends State<Dall_E_Page> {
         ),
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
       ),
-      drawer: SideBarMenu(
-        user: 'User',
-        email: 'Example@email.com',
-      ),
+      drawer: SideBarMenu(),
       body: Padding(
         padding: const EdgeInsets.all(8.0),
         child: Column(

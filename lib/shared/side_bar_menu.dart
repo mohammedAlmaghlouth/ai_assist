@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 
 class SideBarMenu extends StatelessWidget {
-  final String user;
-  final String email;
-  const SideBarMenu({super.key, required this.user, required this.email});
+  const SideBarMenu({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -46,14 +44,14 @@ class SideBarMenu extends StatelessWidget {
                   height: 12,
                 ),
                 Text(
-                  user,
+                  "user",
                   style: TextStyle(
                     fontSize: 24,
                     color: Theme.of(context).colorScheme.onInverseSurface,
                   ),
                 ),
                 Text(
-                  email,
+                  "email@domain.com",
                   style: TextStyle(
                     fontSize: 14,
                     color: Theme.of(context).colorScheme.onInverseSurface,
