@@ -49,6 +49,7 @@ dependencies:
   screenshot: ^2.1.0
   path_provider: ^2.1.1
   permission_handler: ^11.0.1
+  supabase_flutter: ^2.0.0
 #  firebase_core: ^2.24.2
 #  firebase_auth: ^4.15.3
 #  cloud_firestore: ^4.13.6
@@ -81,6 +82,7 @@ flutter:
     - lib/features/main/data/images/imageToText.png
     - lib/features/main/data/images/chatgpt.png
     - lib/features/main/data/images/dalleLogo.png
+    - assets/images/pattern.png
     - assets/images/
     - assets/sounds/
     - assets/images/loader.gif

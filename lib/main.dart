@@ -5,21 +5,16 @@ import 'package:ai_assist/features/voice/presentation/voiceAI_Page.dart';
 import 'package:ai_assist/features/welcome/presentation/welcome_page.dart';
 import 'package:flutter/material.dart';
 import 'features/main/presentation/main_page.dart';
-// import 'package:firebase_core/firebase_core.dart';
+import 'package:supabase_flutter/supabase_flutter.dart';
 
-import 'shared/side_bar_menu.dart';
-
+// Constants
+const supabaseUrl = 'https://bovdbbactjouktgdkmvt.supabase.co';
+const supabaseKey =
+    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImJvdmRiYmFjdGpvdWt0Z2RrbXZ0Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3MDMyMzk3NDgsImV4cCI6MjAxODgxNTc0OH0.kPiervAtbvbdKXz9_uEMQpMO9dfLvNB9ehu_vn3yVoA";
 Future<void> main() async {
-  // WidgetsFlutterBinding.ensureInitialized();
-  // await Firebase.initializeApp(
-  //   options: FirebaseOptions(
-  //     apiKey: 'AIzaSyCXPQO8bhZDi7c6qWfYKja9TrKr8nSmPp4',
-  //     appId: '1:1020046637361:android:d07c9c7a5c33f91bc71810',
-  //     messagingSenderId: '1020046637361',
-  //     projectId: 'petroly-ai',
-  //   ),
-  // );
-  runApp(const MyApp());
+  WidgetsFlutterBinding.ensureInitialized();
+  await Supabase.initialize(url: supabaseUrl, anonKey: supabaseKey);
+  runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
