@@ -1,15 +1,13 @@
-import 'package:ai_assist/features/chatgpt/presentation/chatgpt_page.dart';
-import 'package:ai_assist/features/dall/presentation/dall_e_page.dart';
-import 'package:ai_assist/features/imagetotext/presentation/recognitionscreen.dart';
 import 'package:ai_assist/features/main/presentation/custom_card.dart';
-import 'package:ai_assist/features/voice/presentation/voiceAI_Page.dart';
 import 'package:ai_assist/main.dart';
+import 'package:ai_assist/shared/side_bar_menu.dart';
 import 'package:ai_assist/shared/utils.dart';
 import 'package:flutter/material.dart';
 
 class MainPage extends StatefulWidget {
-  final sideBarMenu;
-  const MainPage({super.key, this.sideBarMenu});
+  final SideBarMenu sideBarMenu;
+
+  const MainPage({super.key, required this.sideBarMenu});
 
   @override
   _MainPageState createState() => _MainPageState();

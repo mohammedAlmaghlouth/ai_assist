@@ -208,11 +208,12 @@ class SideBarMenu extends StatelessWidget {
               onTap: () async {
                 // For Logging out
                 await supabaseServices.signOut();
+                // print(Navigator.of(context).);
                 Navigator.popUntil(
                   context,
-                  ModalRoute.withName("/welcomePage")
+                  ModalRoute.withName("/")
                 );
-                Navigator.pushReplacementNamed(context, "/logout");
+                Navigator.pushReplacementNamed(context, "/");
               },
               iconColor: Theme.of(context).colorScheme.onInverseSurface,
               textColor: Theme.of(context).colorScheme.onInverseSurface,

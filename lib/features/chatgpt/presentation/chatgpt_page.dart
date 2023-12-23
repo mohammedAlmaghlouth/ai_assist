@@ -8,8 +8,9 @@ import 'package:dash_chat_2/dash_chat_2.dart';
 import 'package:flutter/material.dart';
 
 class ChatGPT extends StatefulWidget {
-  final sideBarMenu;
-  const ChatGPT({super.key, this.sideBarMenu});
+  final SideBarMenu sideBarMenu;
+
+  const ChatGPT({super.key, required this.sideBarMenu});
 
   @override
   State<ChatGPT> createState() => _ChatGPTState();

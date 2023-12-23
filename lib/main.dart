@@ -42,15 +42,16 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurpleAccent),
       ),
       themeMode: ThemeMode.system,
-      initialRoute: "/welcomePage",
+      initialRoute: "/",
       routes: {
+        '/': (context) => supabaseServices.client.auth.currentSession == null ? const WelcomePage(): MainPage(sideBarMenu: sideBarMenu),
         '/welcomePage': (context) => const WelcomePage(),
         '/homePage': (context) =>  MainPage(sideBarMenu: sideBarMenu),
         '/chatGPT': (context) =>  ChatGPT(sideBarMenu: sideBarMenu),
         '/DALL-E': (context) =>  Dall_E_Page(sideBarMenu: sideBarMenu),
         '/ImageToText': (context) =>  RecognitionScreen(sideBarMenu: sideBarMenu),
         '/VoiceAIAssistant': (context) =>  VoiceAI_Page(sideBarMenu: sideBarMenu),
-        '/logout': (context) => const WelcomePage(),
+        // '/logout': (context) => const WelcomePage(),
         '/signUpPage': (context) =>
             SignUpPage(authServices: supabaseServices, context: context),
         '/loginPage': (context) =>
