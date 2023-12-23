@@ -1,5 +1,5 @@
 import 'dart:convert';
-import 'package:ai_assist/features/dall/application/api_key.dart';
+import 'package:ai_assist/shared/openai_api.dart';
 import 'package:http/http.dart' as http;
 
 class Api {
@@ -7,7 +7,7 @@ class Api {
 
   static final headers = {
     "Content-Type": "application/json",
-    "Authorization": "Bearer $apiKey"
+    "Authorization": "Bearer $OPENAI_API_KEY"
   };
 
   static generateImage(String text, String size) async {

@@ -1,4 +1,5 @@
-import 'package:ai_assist/features/chatgpt/data/openai_api.dart';
+import 'package:ai_assist/main.dart';
+import 'package:ai_assist/shared/openai_api.dart';
 import 'package:ai_assist/features/chatgpt/data/users.dart';
 import 'package:ai_assist/shared/side_bar_menu.dart';
 import 'package:ai_assist/shared/utils.dart';
@@ -7,7 +8,9 @@ import 'package:dash_chat_2/dash_chat_2.dart';
 import 'package:flutter/material.dart';
 
 class ChatGPT extends StatefulWidget {
-  const ChatGPT({super.key});
+  final SideBarMenu sideBarMenu;
+
+  const ChatGPT({super.key, required this.sideBarMenu});
 
   @override
   State<ChatGPT> createState() => _ChatGPTState();
@@ -37,15 +40,14 @@ class _ChatGPTState extends State<ChatGPT> {
           ),
         ),
       ),
-      drawer: SideBarMenu(
-        user: 'User',
-        email: 'Example@email.com',
-      ),
+      drawer: sideBarMenu,
       body: DashChat(
         currentUser: currentUser,
         messageOptions: MessageOptions(
-            currentUserTextColor: Theme.of(context).colorScheme.onSecondaryContainer,
-            currentUserContainerColor: Theme.of(context).colorScheme.inversePrimary,
+            currentUserTextColor:
+                Theme.of(context).colorScheme.onSecondaryContainer,
+            currentUserContainerColor:
+                Theme.of(context).colorScheme.inversePrimary,
             containerColor: Theme.of(context).colorScheme.secondaryContainer,
             textColor: Theme.of(context).colorScheme.onSecondaryContainer),
         onSend: (ChatMessage message) {

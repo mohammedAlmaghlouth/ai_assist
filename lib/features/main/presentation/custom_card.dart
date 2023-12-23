@@ -7,7 +7,7 @@ class CustomCard extends StatelessWidget {
   final String imagePath;
   final String title;
   final String description;
-  final Widget route;
+  final String route;
 
   CustomCard({
     required this.color,
@@ -21,12 +21,7 @@ class CustomCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        Navigator.push(
-          context,
-          MaterialPageRoute(
-            builder: (context) => route,
-          ),
-        );
+        Navigator.pushNamed(context, route);
       },
       child: Container(
         child: Card(

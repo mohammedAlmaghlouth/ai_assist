@@ -1,16 +1,18 @@
 // Import necessary libraries
 import 'dart:io';
 import 'package:ai_assist/features/imagetotext/domain/optiondialog.dart';
+import 'package:ai_assist/main.dart';
 import 'package:ai_assist/shared/side_bar_menu.dart';
 import 'package:ai_assist/shared/utils.dart';
 import 'package:ai_assist/features/imagetotext/presentation/process_image.dart';
-import 'package:ai_assist/shared/bottom_navigation.dart';
 import 'package:clipboard/clipboard.dart';
 import 'package:flutter/material.dart';
 import 'package:share_plus/share_plus.dart';
 
 class RecognitionScreen extends StatefulWidget {
-  const RecognitionScreen({super.key});
+  final SideBarMenu sideBarMenu;
+
+  const RecognitionScreen({super.key, required this.sideBarMenu});
 
   @override
   State<RecognitionScreen> createState() => _RecognitionScreenState();
@@ -53,11 +55,7 @@ class _RecognitionScreenState extends State<RecognitionScreen> {
         elevation: 0.00,
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
       ),
-      drawer: SideBarMenu(
-        user: 'User',
-        email: 'Example@email.com',
-      ),
-      backgroundColor: const Color.fromARGB(255, 44, 44, 44),
+      drawer: sideBarMenu,
       floatingActionButton: Padding(
         padding: EdgeInsets.symmetric(horizontal: 15),
         child: Column(
@@ -67,7 +65,8 @@ class _RecognitionScreenState extends State<RecognitionScreen> {
             Container(
               margin: EdgeInsets.only(bottom: 10),
               child: FloatingActionButton(
-                heroTag: null, // Disables hero animation
+                heroTag: null,
+                // Disables hero animation
                 backgroundColor: Color.fromARGB(255, 14, 79, 169),
                 onPressed: () => Share.share(recognizedText!),
                 child: Icon(
@@ -117,26 +116,32 @@ class _RecognitionScreenState extends State<RecognitionScreen> {
                 onTap: () => optionsdialog(context, updateSelectedImage),
                 child: pickedimage == null
                     ? Image(
-                        width: 256,
-                        height: 256,
-                        image: AssetImage(
-                          'lib/features/imagetotext/data/images/add_image.png',
-                        ),
-                        fit: BoxFit.fill,
-                      )
+                  width: 256,
+                  height: 256,
+                  image: AssetImage(
+                    'lib/features/imagetotext/data/images/add_image.png',
+                  ),
+                  fit: BoxFit.fill,
+                )
                     : Image.file(
-                        pickedimage!,
-                        width: 256,
-                        height: 256,
-                        fit: BoxFit.fill,
-                      ),
+                  pickedimage!,
+                  width: 256,
+                  height: 256,
+                  fit: BoxFit.fill,
+                ),
               ),
               SizedBox(
                 height: 30,
               ),
               Container(
                 decoration: BoxDecoration(
-                  border: Border.all(color: Colors.white), // Set border color
+                  border: Border.all(
+                      color: MediaQuery.platformBrightnessOf(context).name ==
+                          "dark"
+                          ? Theme.of(context).colorScheme.onInverseSurface
+                          : Theme.of(context)
+                          .colorScheme
+                          .onSurface), // Set border color
                   borderRadius: BorderRadius.circular(10), // Set border radius
                 ),
                 padding: EdgeInsets.all(8),
@@ -144,7 +149,10 @@ class _RecognitionScreenState extends State<RecognitionScreen> {
                   recognizedText ?? "No text recognized",
                   style: TextStyle(
                     fontSize: 16,
-                    color: Colors.white,
+                    color:
+                    MediaQuery.platformBrightnessOf(context).name == "dark"
+                        ? Theme.of(context).colorScheme.onInverseSurface
+                        : Theme.of(context).colorScheme.onSurface,
                     fontWeight: FontWeight.w500,
                   ),
                 ),

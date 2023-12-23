@@ -1,6 +1,6 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
-import '../data/secrets.dart';
+import 'package:ai_assist/shared/openai_api.dart';
 
 class OpenAIService {
   final List<Map<String, String>> messages = [];
@@ -11,7 +11,7 @@ class OpenAIService {
         Uri.parse('https://api.openai.com/v1/chat/completions'),
         headers: {
           'Content-Type': 'application/json',
-          'Authorization': 'Bearer $openAIAPIKey',
+          'Authorization': 'Bearer $OPENAI_API_KEY',
         },
         body: jsonEncode({
           "model": "gpt-3.5-turbo",
@@ -59,7 +59,7 @@ class OpenAIService {
         Uri.parse('https://api.openai.com/v1/chat/completions'),
         headers: {
           'Content-Type': 'application/json',
-          'Authorization': 'Bearer $openAIAPIKey',
+          'Authorization': 'Bearer $OPENAI_API_KEY',
         },
         body: jsonEncode({
           "model": "gpt-3.5-turbo",
@@ -95,7 +95,7 @@ class OpenAIService {
         Uri.parse('https://api.openai.com/v1/images/generations'),
         headers: {
           'Content-Type': 'application/json',
-          'Authorization': 'Bearer $openAIAPIKey',
+          'Authorization': 'Bearer $OPENAI_API_KEY',
         },
         body: jsonEncode({
           'prompt': prompt,

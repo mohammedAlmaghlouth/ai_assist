@@ -3,12 +3,9 @@
 #
 
 list(APPEND FLUTTER_PLUGIN_LIST
-  cloud_firestore
+  app_links
   file_selector_windows
-  firebase_auth
-  firebase_core
   flutter_tts
-  modal_progress_hud_nsn
   permission_handler_windows
   share_plus
   url_launcher_windows
