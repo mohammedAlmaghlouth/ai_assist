@@ -71,6 +71,15 @@ class SideBarMenu extends StatelessWidget {
   //   );
   // }
 
+  Future<void> _logout(BuildContext context) async {
+    await supabaseServices.signOut();
+    Navigator.popUntil(
+        context,
+        ModalRoute.withName("/")
+    );
+    Navigator.pushReplacementNamed(context, "/");
+  }
+
   Widget buildHeader(BuildContext context) {
     return FutureBuilder<List<String>>(
       future: supabaseServices.getUser(),
@@ -207,13 +216,7 @@ class SideBarMenu extends StatelessWidget {
               title: const Text("Logout"),
               onTap: () async {
                 // For Logging out
-                await supabaseServices.signOut();
-                // print(Navigator.of(context).);
-                Navigator.popUntil(
-                  context,
-                  ModalRoute.withName("/")
-                );
-                Navigator.pushReplacementNamed(context, "/");
+                _logout(context);
               },
               iconColor: Theme.of(context).colorScheme.onInverseSurface,
               textColor: Theme.of(context).colorScheme.onInverseSurface,

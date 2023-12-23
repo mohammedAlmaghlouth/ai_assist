@@ -46,7 +46,7 @@ class MyApp extends StatelessWidget {
       routes: {
         '/': (context) => supabaseServices.client.auth.currentSession == null ? const WelcomePage(): MainPage(sideBarMenu: sideBarMenu),
         '/welcomePage': (context) => const WelcomePage(),
-        '/homePage': (context) =>  MainPage(sideBarMenu: sideBarMenu),
+        '/homePage': (context) =>  MainPage(sideBarMenu: sideBarMenu, supabaseServices: supabaseServices,),
         '/chatGPT': (context) =>  ChatGPT(sideBarMenu: sideBarMenu),
         '/DALL-E': (context) =>  Dall_E_Page(sideBarMenu: sideBarMenu),
         '/ImageToText': (context) =>  RecognitionScreen(sideBarMenu: sideBarMenu),
