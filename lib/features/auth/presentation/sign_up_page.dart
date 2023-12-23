@@ -1,9 +1,13 @@
 import 'package:ai_assist/features/auth/presentation/my_button.dart';
 import 'package:ai_assist/features/auth/presentation/my_textfield.dart';
+import 'package:supabase_flutter/supabase_flutter.dart';
 import 'package:flutter/material.dart';
 
 class SignUpPage extends StatelessWidget {
-  SignUpPage({super.key});
+  final authServices;
+  final BuildContext context;
+
+  SignUpPage({super.key, this.authServices, required this.context});
 
   // text editing controllers
   final usernameController = TextEditingController();
@@ -12,7 +16,30 @@ class SignUpPage extends StatelessWidget {
   final phrase = "Already have an account?";
 
   // sign user in method
-  void signUserUp() {}
+  void signUserUp() async {
+    var response = await authServices.signUp(
+      email: emailController.text,
+      username: usernameController.text,
+      password: passwordController.text,
+    );
+
+    if (response.runtimeType == AuthResponse) {
+      Navigator.pushNamed(context, "/homePage");
+    } else {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text(
+            response.message,
+            style: TextStyle(
+              color: Theme.of(context).colorScheme.onSecondaryContainer,
+            ),
+          ),
+          backgroundColor: Theme.of(context).colorScheme.secondaryContainer,
+          duration: const Duration(seconds: 2),
+        ),
+      );
+    }
+  }
 
   @override
   Widget build(BuildContext context) {

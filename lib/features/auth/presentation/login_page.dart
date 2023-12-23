@@ -1,17 +1,43 @@
+import 'package:ai_assist/shared/supabase_services.dart';
 import 'package:ai_assist/features/auth/presentation/my_button.dart';
 import 'package:ai_assist/features/auth/presentation/my_textfield.dart';
 import 'package:flutter/material.dart';
+import 'package:supabase_flutter/supabase_flutter.dart';
 
 class LoginPage extends StatelessWidget {
-  LoginPage({super.key});
+  final authServices;
+  final BuildContext context;
+  LoginPage({super.key, this.authServices, required this.context});
 
   // text editing controllers
-  final usernameController = TextEditingController();
+  final emailController = TextEditingController();
   final passwordController = TextEditingController();
   final phrase = "Don\'t have an account?";
 
+
   // sign user in method
-  void signUserIn() {}
+  void signUserIn() async {
+    var response = await authServices.login(
+      email: emailController.text,
+      password: passwordController.text,
+    );
+
+    if (response.runtimeType == AuthResponse) {
+      Navigator.pushNamed(context, "/homePage");
+    } else {
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+        content: Text(
+          response.message,
+          style: TextStyle(
+            color: Theme.of(context).colorScheme.onSecondaryContainer,
+          ),
+        ),
+        backgroundColor:
+        Theme.of(context).colorScheme.secondaryContainer,
+        duration: const Duration(seconds: 2),
+      ));
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -63,7 +89,7 @@ class LoginPage extends StatelessWidget {
           
                 // username textfield
                 MyTextField(
-                  controller: usernameController,
+                  controller: emailController,
                   hintText: 'Username',
                   obscureText: false,
                 ),

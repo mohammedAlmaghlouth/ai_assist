@@ -6,6 +6,7 @@ import 'dart:typed_data';
 import 'package:ai_assist/features/dall/application/api_services.dart';
 import 'package:ai_assist/features/dall/presentation/arts_screen.dart';
 import 'package:ai_assist/features/dall/data/colors.dart';
+import 'package:ai_assist/main.dart';
 import 'package:ai_assist/shared/side_bar_menu.dart';
 import 'package:flutter/material.dart';
 import 'package:path_provider/path_provider.dart';
@@ -14,7 +15,9 @@ import 'package:screenshot/screenshot.dart';
 import 'package:share_plus/share_plus.dart';
 
 class Dall_E_Page extends StatefulWidget {
-  const Dall_E_Page({super.key});
+  final sideBarMenu;
+
+  const Dall_E_Page({super.key, this.sideBarMenu});
 
   @override
   State<Dall_E_Page> createState() => _Dall_E_PageState();
@@ -143,7 +146,7 @@ class _Dall_E_PageState extends State<Dall_E_Page> {
         ),
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
       ),
-      drawer: SideBarMenu(),
+      drawer: sideBarMenu,
       body: Padding(
         padding: const EdgeInsets.all(8.0),
         child: Column(

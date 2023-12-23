@@ -1,16 +1,15 @@
 import 'package:ai_assist/features/chatgpt/presentation/chatgpt_page.dart';
-import 'package:ai_assist/features/dall/data/colors.dart';
 import 'package:ai_assist/features/dall/presentation/dall_e_page.dart';
 import 'package:ai_assist/features/imagetotext/presentation/recognitionscreen.dart';
 import 'package:ai_assist/features/main/presentation/custom_card.dart';
 import 'package:ai_assist/features/voice/presentation/voiceAI_Page.dart';
-import 'package:ai_assist/shared/bottom_navigation.dart';
-import 'package:ai_assist/shared/side_bar_menu.dart';
+import 'package:ai_assist/main.dart';
 import 'package:ai_assist/shared/utils.dart';
 import 'package:flutter/material.dart';
 
 class MainPage extends StatefulWidget {
-  const MainPage({super.key});
+  final sideBarMenu;
+  const MainPage({super.key, this.sideBarMenu});
 
   @override
   _MainPageState createState() => _MainPageState();
@@ -44,7 +43,7 @@ class _MainPageState extends State<MainPage> {
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
         centerTitle: true,
       ),
-      drawer: SideBarMenu(),
+      drawer: sideBarMenu,
       body: Container(
         decoration: BoxDecoration(
           image: DecorationImage(
@@ -87,7 +86,7 @@ class _MainPageState extends State<MainPage> {
                           title: "ChatGPT",
                           description:
                               "Use an advanced AI language model for natural language conversations.",
-                          route: const ChatGPT()),
+                          route: "/chatGPT"),
                       CustomCard(
                         color: Colors.brown,
                         imagePath:
@@ -95,7 +94,7 @@ class _MainPageState extends State<MainPage> {
                         title: "Dall-E",
                         description:
                             "Use a groundbreaking AI model creating images from textual descriptions.",
-                        route: const Dall_E_Page(),
+                        route: "/DALL-E",
                       ),
                       CustomCard(
                         color: Colors.deepPurple,
@@ -104,7 +103,7 @@ class _MainPageState extends State<MainPage> {
                         title: "Image to Text",
                         description:
                             "Convert descriptive content from images into text through advanced processing",
-                        route: const RecognitionScreen(),
+                        route: "/ImageToText",
                       ),
                       CustomCard(
                           color: Colors.pink,
@@ -112,7 +111,7 @@ class _MainPageState extends State<MainPage> {
                           title: "AI Voice Assistant",
                           description:
                               "Ask questions using the microphone and receive answers accordingly",
-                          route: const VoiceAI_Page()),
+                          route: "/VoiceAIAssistant"),
                     ],
                   ),
                 ),

@@ -1,3 +1,4 @@
+import 'package:ai_assist/main.dart';
 import 'package:ai_assist/shared/openai_api.dart';
 import 'package:ai_assist/features/chatgpt/data/users.dart';
 import 'package:ai_assist/shared/side_bar_menu.dart';
@@ -7,7 +8,8 @@ import 'package:dash_chat_2/dash_chat_2.dart';
 import 'package:flutter/material.dart';
 
 class ChatGPT extends StatefulWidget {
-  const ChatGPT({super.key});
+  final sideBarMenu;
+  const ChatGPT({super.key, this.sideBarMenu});
 
   @override
   State<ChatGPT> createState() => _ChatGPTState();
@@ -37,7 +39,7 @@ class _ChatGPTState extends State<ChatGPT> {
           ),
         ),
       ),
-      drawer: SideBarMenu(),
+      drawer: sideBarMenu,
       body: DashChat(
         currentUser: currentUser,
         messageOptions: MessageOptions(

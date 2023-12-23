@@ -10,7 +10,9 @@ import 'package:flutter/material.dart';
 import 'package:share_plus/share_plus.dart';
 
 class RecognitionScreen extends StatefulWidget {
-  const RecognitionScreen({super.key});
+  final sideBarMenu;
+
+  const RecognitionScreen({super.key, this.sideBarMenu});
 
   @override
   State<RecognitionScreen> createState() => _RecognitionScreenState();
@@ -53,7 +55,7 @@ class _RecognitionScreenState extends State<RecognitionScreen> {
         elevation: 0.00,
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
       ),
-      drawer: SideBarMenu(),
+      drawer: widget.sideBarMenu,
       backgroundColor: const Color.fromARGB(255, 44, 44, 44),
       floatingActionButton: Padding(
         padding: EdgeInsets.symmetric(horizontal: 15),
