@@ -56,7 +56,6 @@ class _RecognitionScreenState extends State<RecognitionScreen> {
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
       ),
       drawer: sideBarMenu,
-      backgroundColor: const Color.fromARGB(255, 44, 44, 44),
       floatingActionButton: Padding(
         padding: EdgeInsets.symmetric(horizontal: 15),
         child: Column(
@@ -117,26 +116,32 @@ class _RecognitionScreenState extends State<RecognitionScreen> {
                 onTap: () => optionsdialog(context, updateSelectedImage),
                 child: pickedimage == null
                     ? Image(
-                        width: 256,
-                        height: 256,
-                        image: AssetImage(
-                          'lib/features/imagetotext/data/images/add_image.png',
-                        ),
-                        fit: BoxFit.fill,
-                      )
+                  width: 256,
+                  height: 256,
+                  image: AssetImage(
+                    'lib/features/imagetotext/data/images/add_image.png',
+                  ),
+                  fit: BoxFit.fill,
+                )
                     : Image.file(
-                        pickedimage!,
-                        width: 256,
-                        height: 256,
-                        fit: BoxFit.fill,
-                      ),
+                  pickedimage!,
+                  width: 256,
+                  height: 256,
+                  fit: BoxFit.fill,
+                ),
               ),
               SizedBox(
                 height: 30,
               ),
               Container(
                 decoration: BoxDecoration(
-                  border: Border.all(color: Colors.white), // Set border color
+                  border: Border.all(
+                      color: MediaQuery.platformBrightnessOf(context).name ==
+                          "dark"
+                          ? Theme.of(context).colorScheme.onInverseSurface
+                          : Theme.of(context)
+                          .colorScheme
+                          .onSurface), // Set border color
                   borderRadius: BorderRadius.circular(10), // Set border radius
                 ),
                 padding: EdgeInsets.all(8),
@@ -144,7 +149,10 @@ class _RecognitionScreenState extends State<RecognitionScreen> {
                   recognizedText ?? "No text recognized",
                   style: TextStyle(
                     fontSize: 16,
-                    color: Colors.white,
+                    color:
+                    MediaQuery.platformBrightnessOf(context).name == "dark"
+                        ? Theme.of(context).colorScheme.onInverseSurface
+                        : Theme.of(context).colorScheme.onSurface,
                     fontWeight: FontWeight.w500,
                   ),
                 ),

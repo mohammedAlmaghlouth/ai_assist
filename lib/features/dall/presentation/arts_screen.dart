@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:ai_assist/features/dall/data/colors.dart';
 import 'package:flutter/material.dart';
+import 'package:path_provider/path_provider.dart';
 
 class ArtsScreen extends StatefulWidget {
   const ArtsScreen({super.key});
@@ -14,7 +15,8 @@ class _ArtsScreenState extends State<ArtsScreen> {
   List imgList = [];
 
   getImages() async {
-    final directory = Directory("storage/emulated/0/AI Image");
+    final externalDirectory = await getExternalStorageDirectory();
+    final directory = Directory('${externalDirectory?.path}/AI Image');
     imgList = directory.listSync();
     print(imgList);
   }

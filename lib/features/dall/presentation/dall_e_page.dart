@@ -2,15 +2,13 @@
 
 import 'dart:io';
 import 'dart:typed_data';
-
+import 'package:path_provider/path_provider.dart';
+import 'package:permission_handler/permission_handler.dart';
 import 'package:ai_assist/features/dall/application/api_services.dart';
 import 'package:ai_assist/features/dall/presentation/arts_screen.dart';
 import 'package:ai_assist/features/dall/data/colors.dart';
 import 'package:ai_assist/main.dart';
-import 'package:ai_assist/shared/side_bar_menu.dart';
 import 'package:flutter/material.dart';
-import 'package:path_provider/path_provider.dart';
-import 'package:permission_handler/permission_handler.dart';
 import 'package:screenshot/screenshot.dart';
 import 'package:share_plus/share_plus.dart';
 
@@ -32,20 +30,85 @@ class _Dall_E_PageState extends State<Dall_E_Page> {
   var isLoaded = false;
   ScreenshotController screenshotController = ScreenshotController();
 
+  // downloadImg() async {
+  //   var result = await Permission.storage.request();
+  //
+  //   if (result.isGranted) {
+  //     final foldername = "AI Image";
+  //
+  //     final path = Directory("storage/emulated/0/$foldername");
+  //     final filename = "${DateTime.now().microsecondsSinceEpoch}.png";
+  //
+  //     if (await path.exists()) {
+  //       await screenshotController.captureAndSave(path.path,
+  //           delay: Duration(milliseconds: 100),
+  //           fileName: filename,
+  //           pixelRatio: 1.0);
+  //       ScaffoldMessenger.of(context).showSnackBar(
+  //         SnackBar(
+  //           content: Text(
+  //             "Downloaded to ${path.path}",
+  //             style: TextStyle(
+  //               color: Theme.of(context).colorScheme.onSecondaryContainer,
+  //             ),
+  //           ),
+  //           backgroundColor: Theme.of(context).colorScheme.secondaryContainer,
+  //         ),
+  //       );
+  //     } else {
+  //       await path.create();
+  //       await screenshotController.captureAndSave(path.path,
+  //           delay: Duration(milliseconds: 100),
+  //           fileName: filename,
+  //           pixelRatio: 1.0);
+  //       ScaffoldMessenger.of(context).showSnackBar(
+  //         SnackBar(
+  //           content: Text(
+  //             "Downloaded to ${path.path}",
+  //             style: TextStyle(
+  //               color: Theme.of(context).colorScheme.onSecondaryContainer,
+  //             ),
+  //           ),
+  //           backgroundColor: Theme.of(context).colorScheme.secondaryContainer,
+  //         ),
+  //       );
+  //     }
+  //   } else {
+  //     ScaffoldMessenger.of(context).showSnackBar(
+  //       SnackBar(
+  //         content: Text(
+  //           "Permission denied",
+  //           style: TextStyle(
+  //             color: Theme.of(context).colorScheme.onSecondaryContainer,
+  //           ),
+  //         ),
+  //         backgroundColor: Theme.of(context).colorScheme.secondaryContainer,
+  //       ),
+  //     );
+  //   }
+  // }
+
   downloadImg() async {
-    var result = await Permission.storage.request();
+    var result = await Permission.manageExternalStorage.request();
 
     if (result.isGranted) {
       final foldername = "AI Image";
 
-      final path = Directory("storage/emulated/0/$foldername");
+      // Using path_provider to get the correct external storage directory
+      final externalDirectory = await getExternalStorageDirectory();
+      final path = Directory('${externalDirectory?.path}/$foldername');
       final filename = "${DateTime.now().microsecondsSinceEpoch}.png";
 
-      if (await path.exists()) {
+      try {
+        if (!await path.exists()) {
+          await path.create();
+        }
+        // Make sure screenshotController is initialized and captureAndSave method is used correctly
         await screenshotController.captureAndSave(path.path,
             delay: Duration(milliseconds: 100),
             fileName: filename,
             pixelRatio: 1.0);
+
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
             content: Text(
@@ -57,23 +120,9 @@ class _Dall_E_PageState extends State<Dall_E_Page> {
             backgroundColor: Theme.of(context).colorScheme.secondaryContainer,
           ),
         );
-      } else {
-        await path.create();
-        await screenshotController.captureAndSave(path.path,
-            delay: Duration(milliseconds: 100),
-            fileName: filename,
-            pixelRatio: 1.0);
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(
-            content: Text(
-              "Downloaded to ${path.path}",
-              style: TextStyle(
-                color: Theme.of(context).colorScheme.onSecondaryContainer,
-              ),
-            ),
-            backgroundColor: Theme.of(context).colorScheme.secondaryContainer,
-          ),
-        );
+      } catch (e) {
+        print("Error saving image: $e");
+        // Handle the error or show a message
       }
     } else {
       ScaffoldMessenger.of(context).showSnackBar(
@@ -112,30 +161,36 @@ class _Dall_E_PageState extends State<Dall_E_Page> {
     return Scaffold(
       resizeToAvoidBottomInset: false,
       appBar: AppBar(
-        actions: [
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: ElevatedButton(
-              style: ElevatedButton.styleFrom(
-                padding: EdgeInsets.all(8),
-                elevation: 2,
-                backgroundColor: Theme.of(context).colorScheme.onSecondary,
-              ),
-              onPressed: () {
-                Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => const ArtsScreen()));
-              },
-              child: Text(
-                "My Arts",
-                style: TextStyle(
-                  color: Theme.of(context).colorScheme.onSecondaryContainer,
-                ),
-              ),
-            ),
-          ),
-        ],
+        // actions: [
+        //   Padding(
+        //     padding: const EdgeInsets.all(8.0),
+        //     child: ElevatedButton(
+        //       style: ElevatedButton.styleFrom(
+        //         padding: EdgeInsets.all(8),
+        //         elevation: 2,
+        //         backgroundColor: Theme
+        //             .of(context)
+        //             .colorScheme
+        //             .onSecondary,
+        //       ),
+        //       onPressed: () {
+        //         Navigator.push(
+        //             context,
+        //             MaterialPageRoute(
+        //                 builder: (context) => const ArtsScreen()));
+        //       },
+        //       child: Text(
+        //         "My Arts",
+        //         style: TextStyle(
+        //           color: Theme
+        //               .of(context)
+        //               .colorScheme
+        //               .onSecondaryContainer,
+        //         ),
+        //       ),
+        //     ),
+        //   ),
+        // ],
         centerTitle: true,
         title: Text(
           "AI Image Generator",
@@ -197,39 +252,41 @@ class _Dall_E_PageState extends State<Dall_E_Page> {
                           borderRadius: BorderRadius.circular(12),
                         ),
                         child: DropdownButtonHideUnderline(
-                            child: DropdownButton(
-                          dropdownColor:
-                              Theme.of(context).colorScheme.secondaryContainer,
-                          icon: Icon(Icons.expand_more,
-                              color: Theme.of(context)
-                                  .colorScheme
-                                  .onSecondaryContainer),
-                          value: dropValue,
-                          hint: Text(
-                            "Select size",
-                            style: TextStyle(
+                          child: DropdownButton(
+                            dropdownColor: Theme.of(context)
+                                .colorScheme
+                                .secondaryContainer,
+                            icon: Icon(Icons.expand_more,
                                 color: Theme.of(context)
                                     .colorScheme
                                     .onSecondaryContainer),
+                            value: dropValue,
+                            hint: Text(
+                              "Select size",
+                              style: TextStyle(
+                                  color: Theme.of(context)
+                                      .colorScheme
+                                      .onSecondaryContainer),
+                            ),
+                            items: List.generate(
+                                sizes.length,
+                                (index) => DropdownMenuItem(
+                                      child: Text(
+                                        sizes[index],
+                                        style: TextStyle(
+                                            color: Theme.of(context)
+                                                .colorScheme
+                                                .onSecondaryContainer),
+                                      ),
+                                      value: values[index],
+                                    )),
+                            onChanged: (value) {
+                              setState(() {
+                                dropValue = value.toString();
+                              });
+                            },
                           ),
-                          items: List.generate(
-                              sizes.length,
-                              (index) => DropdownMenuItem(
-                                    child: Text(
-                                      sizes[index],
-                                      style: TextStyle(
-                                          color: Theme.of(context)
-                                              .colorScheme
-                                              .onSecondaryContainer),
-                                    ),
-                                    value: values[index],
-                                  )),
-                          onChanged: (value) {
-                            setState(() {
-                              dropValue = value.toString();
-                            });
-                          },
-                        )),
+                        ),
                       )
                     ],
                   ),
@@ -303,24 +360,44 @@ class _Dall_E_PageState extends State<Dall_E_Page> {
                           children: [
                             Expanded(
                               child: ElevatedButton.icon(
-                                icon: const Icon(
-                                    Icons.download_for_offline_rounded),
+                                icon: Icon(
+                                  Icons.download_for_offline_rounded,
+                                  color: Theme.of(context)
+                                      .colorScheme
+                                      .onSecondaryContainer,
+                                ),
                                 style: ElevatedButton.styleFrom(
                                   padding: EdgeInsets.all(8),
-                                  backgroundColor: btnColor,
+                                  backgroundColor: Theme.of(context)
+                                      .colorScheme
+                                      .secondaryContainer,
                                 ),
                                 onPressed: () {
                                   downloadImg();
                                 },
-                                label: const Text("Download"),
+                                label: Text(
+                                  "Download",
+                                  style: TextStyle(
+                                    color: Theme.of(context)
+                                        .colorScheme
+                                        .onSecondaryContainer,
+                                  ),
+                                ),
                               ),
                             ),
                             const SizedBox(width: 12),
                             ElevatedButton.icon(
-                              icon: const Icon(Icons.share),
+                              icon: Icon(
+                                Icons.share,
+                                color: Theme.of(context)
+                                    .colorScheme
+                                    .onSecondaryContainer,
+                              ),
                               style: ElevatedButton.styleFrom(
                                 padding: EdgeInsets.all(8),
-                                backgroundColor: btnColor,
+                                backgroundColor: Theme.of(context)
+                                    .colorScheme
+                                    .secondaryContainer,
                               ),
                               onPressed: () async {
                                 await shareImage();
@@ -340,7 +417,13 @@ class _Dall_E_PageState extends State<Dall_E_Page> {
                                   ),
                                 );
                               },
-                              label: const Text("Share"),
+                              label: Text(
+                                "Share",
+                                style: TextStyle(
+                                    color: Theme.of(context)
+                                        .colorScheme
+                                        .onSecondaryContainer),
+                              ),
                             ),
                           ],
                         )
