@@ -18,8 +18,8 @@ class SignUpPage extends StatelessWidget {
   // sign user in method
   void signUserUp() async {
     var response = await authServices.signUp(
-      email: emailController.text,
-      username: usernameController.text,
+      email: emailController.text.trim(),
+      username: usernameController.text.trim(),
       password: passwordController.text,
     );
 

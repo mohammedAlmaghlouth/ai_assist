@@ -14,11 +14,10 @@ class LoginPage extends StatelessWidget {
   final passwordController = TextEditingController();
   final phrase = "Don\'t have an account?";
 
-
   // sign user in method
   void signUserIn() async {
     var response = await authServices.login(
-      email: emailController.text,
+      email: emailController.text.trim(),
       password: passwordController.text,
     );
 
@@ -32,8 +31,7 @@ class LoginPage extends StatelessWidget {
             color: Theme.of(context).colorScheme.onSecondaryContainer,
           ),
         ),
-        backgroundColor:
-        Theme.of(context).colorScheme.secondaryContainer,
+        backgroundColor: Theme.of(context).colorScheme.secondaryContainer,
         duration: const Duration(seconds: 2),
       ));
     }
@@ -47,11 +45,9 @@ class LoginPage extends StatelessWidget {
         backgroundColor: Colors.transparent,
         forceMaterialTransparency: true,
         iconTheme: IconThemeData(
-          color: MediaQuery.platformBrightnessOf(context)
-              .name ==
-              "dark"
-              ? Theme.of(context).colorScheme.onInverseSurface
-              : Theme.of(context).colorScheme.onSurface),
+            color: MediaQuery.platformBrightnessOf(context).name == "dark"
+                ? Theme.of(context).colorScheme.onInverseSurface
+                : Theme.of(context).colorScheme.onSurface),
       ),
       body: SafeArea(
         child: SingleChildScrollView(
@@ -61,50 +57,47 @@ class LoginPage extends StatelessWidget {
               // mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 const SizedBox(height: 50),
-          
+
                 // logo
                 Icon(
                   Icons.lock,
                   size: 150,
-                  color: MediaQuery.platformBrightnessOf(context)
-                      .name ==
-                      "dark"
+                  color: MediaQuery.platformBrightnessOf(context).name == "dark"
                       ? Theme.of(context).colorScheme.onInverseSurface
                       : Theme.of(context).colorScheme.onSurface,
                 ),
-          
+
                 const SizedBox(height: 50),
-          
+
                 // welcome back, you've been missed!
                 Text(
                   'Welcome back we missed you!',
                   style: TextStyle(
-                    color: Colors.grey[600],
-                    fontSize: 16,
-                    fontWeight: FontWeight.bold
-                  ),
+                      color: Colors.grey[600],
+                      fontSize: 16,
+                      fontWeight: FontWeight.bold),
                 ),
-          
+
                 const SizedBox(height: 25),
-          
+
                 // username textfield
                 MyTextField(
                   controller: emailController,
-                  hintText: 'Username',
+                  hintText: 'Email',
                   obscureText: false,
                 ),
-          
+
                 const SizedBox(height: 10),
-          
+
                 // password textfield
                 MyTextField(
                   controller: passwordController,
                   hintText: 'Password',
                   obscureText: true,
                 ),
-          
+
                 const SizedBox(height: 10),
-          
+
                 // Don't have an account?
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 30.0),
@@ -113,39 +106,32 @@ class LoginPage extends StatelessWidget {
                     children: [
                       TextButton(
                         onPressed: () {
-                          Navigator.pushReplacementNamed(context, "/signUpPage");
+                          Navigator.pushReplacementNamed(
+                              context, "/signUpPage");
                         },
                         child: Text(
                           phrase,
                           style: TextStyle(
-                            color:
-                            MediaQuery
-                                .platformBrightnessOf(context)
-                                .name ==
-                                "dark"
-                                ? Theme
-                                .of(context)
-                                .colorScheme
-                                .onInverseSurface
-                                : Theme
-                                .of(context)
-                                .colorScheme
-                                .onSurface,
+                            color: MediaQuery.platformBrightnessOf(context)
+                                        .name ==
+                                    "dark"
+                                ? Theme.of(context).colorScheme.onInverseSurface
+                                : Theme.of(context).colorScheme.onSurface,
                           ),
                         ),
                       ),
                     ],
                   ),
                 ),
-          
+
                 const SizedBox(height: 25),
-          
+
                 // sign in button
                 MyButton(
                   onTap: signUserIn,
                   content: "Login",
                 ),
-          
+
                 const SizedBox(height: 50),
               ],
             ),
