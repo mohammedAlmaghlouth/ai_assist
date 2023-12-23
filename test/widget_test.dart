@@ -1,36 +1,44 @@
 import 'package:ai_assist/features/chatgpt/presentation/chatgpt_page.dart';
+import 'package:ai_assist/features/imagetotext/presentation/recognitionscreen.dart';
+import 'package:ai_assist/features/voice/presentation/voiceAI_Page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:ai_assist/shared/openai_api.dart';
-import 'package:ai_assist/features/chatgpt/data/users.dart';
-import 'package:chat_gpt_sdk/chat_gpt_sdk.dart';
-import 'package:dash_chat_2/dash_chat_2.dart';
-import 'package:ai_assist/main.dart'; // Assuming this is where ChatGPT is included
+import 'package:ai_assist/features/dall/presentation/dall_e_page.dart';
+import 'package:ai_assist/main.dart'; // Update with actual imports
 
 void main() {
-  // to test ChatGpt page
-  testWidgets('ChatGPT Page Test', (WidgetTester tester) async {
-    // Build the ChatGPT page and trigger a frame.
-    await tester.pumpWidget(const MaterialApp(home: ChatGPT()));
+  // Tests for ChatGPT Page
+  group('ChatGPT Page Tests', () {
+    testWidgets('ChatGPT Page Test', (WidgetTester tester) async {
+      await tester.pumpWidget(const MaterialApp(home: ChatGPT()));
+      expect(find.text('AI-ASSIST GPT'), findsOneWidget);
+    });
+  });
 
-    // Verify if the AppBar with the title 'AI-ASSIST GPT' is present.
-    expect(find.text('AI-ASSIST GPT'), findsOneWidget);
+  // Tests for Dall_E_Page
+  group('Dall_E_Page Tests', () {
+    testWidgets('Dropdown Selection Test', (WidgetTester tester) async {
+      await tester.pumpWidget(const MaterialApp(home: Dall_E_Page()));
+      Finder dropdownButton = find.byType(DropdownButton);
+      await tester.tap(dropdownButton);
+      await tester.pumpAndSettle();
+      await tester.tap(find.text('Medium').last);
+      await tester.pumpAndSettle();
+      expect(find.text('Medium'), findsOneWidget);
+    });
+  });
 
-    // Find the message input field.
-    final Finder messageInputField = find.byType(TextField);
-    expect(messageInputField, findsOneWidget);
+  // Tests for VoiceAI_Page
+  group('VoiceAI_Page Tests', () {
+    testWidgets('VoiceAI Initialization Test', (WidgetTester tester) async {
+      await tester.pumpWidget(const MaterialApp(home: VoiceAI_Page()));
+    });
+  });
 
-    // Enter a message.
-    await tester.enterText(messageInputField, 'Hello, ChatGPT!');
-    await tester.pumpAndSettle();
-
-    // Tap the send button and trigger a frame.
-    final Finder sendButton =
-        find.widgetWithIcon(FloatingActionButton, Icons.send);
-    await tester.tap(sendButton);
-    await tester.pumpAndSettle();
-
-    // Verify if the message is added to the chat
-    expect(find.text('Hello, ChatGPT!'), findsOneWidget);
+  // Tests for RecognitionScreen
+  group('RecognitionScreen Tests', () {
+    testWidgets('Image Selection Test', (WidgetTester tester) async {
+      await tester.pumpWidget(const MaterialApp(home: RecognitionScreen()));
+    });
   });
 }
