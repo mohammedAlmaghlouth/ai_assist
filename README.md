@@ -33,8 +33,6 @@ To install and run the application, follow these steps:
 ### Setting Up API Keys
 For the application to function correctly, you need to set up API keys for different services:
 1. **DALL-E and ChatGPT API Key:** Obtain the keys from [OpenAI](https://openai.com/).
-   - If you are SWE463 Grader, you will find the API Key ready in your MSTeams private chat by ( Feras | s201929830@kfupm.edu.sa )
-  
    - <img src="https://github.com/mohammedAlmaghlouth/ai_assist/assets/65549274/de200e99-1ea8-48e8-9a22-1de00cb019ed" width="250">
    - <img src="https://github.com/mohammedAlmaghlouth/ai_assist/assets/65549274/0c5961cf-fc8b-46c3-9582-9527dfb2b5f7" width="250">
    - <img src="https://github.com/mohammedAlmaghlouth/ai_assist/assets/65549274/3de8ca7c-271e-4725-bf0c-31458654302f" width="250">
@@ -97,5 +95,4 @@ To use the application:
 
 <a name="license"></a>
 ### License
-Include information about the license under which the project is released, if applicable.
 
